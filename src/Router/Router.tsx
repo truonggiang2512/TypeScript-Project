@@ -6,12 +6,13 @@ import Admin from "../Page/Admin/Admin";
 import Detail from "../Page/Detail/Detail";
 import JobList from "../Page/JobList/JobList";
 import Home from "../Page/Home/Home";
+import Error from "../Component/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootTemplate />,
-    // errorElement: <ErrorPage />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
