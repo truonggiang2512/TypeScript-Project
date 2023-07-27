@@ -9,12 +9,14 @@ const theme = extendTheme({
         primary: teal,
         secondary: deepOrange,
       },
+      spacing: (factor) => `${8 * factor}px`,
     },
     dark: {
       palette: {
         primary: cyan,
         secondary: orange,
       },
+      spacing: (factor) => `${8 * factor}px`,
     },
   },
 });

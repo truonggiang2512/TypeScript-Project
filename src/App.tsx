@@ -15,10 +15,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { Box } from "@mui/material";
 function ModeSelect() {
   const { mode, setMode } = useColorScheme();
   const handleChange = (event: SelectChangeEvent) => {
-    const selectedMode: string = event.target.value;
+    const selectedMode: any = event.target.value;
     setMode(selectedMode);
   };
 
@@ -33,16 +34,19 @@ function ModeSelect() {
         onChange={handleChange}
       >
         <MenuItem value="light">
-          <Chip icon={<LightModeIcon fontSize="small" />} label="Light" />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <LightModeIcon /> Light
+          </Box>
         </MenuItem>
         <MenuItem value="dark">
-          <Chip icon={<DarkModeIcon fontSize="small" />} label="Dark" />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <DarkModeIcon /> Dark
+          </Box>
         </MenuItem>
         <MenuItem value="system">
-          <Chip
-            icon={<SettingsBrightnessIcon fontSize="small" />}
-            label="System"
-          />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <SettingsBrightnessIcon /> System
+          </Box>
         </MenuItem>
       </Select>
     </FormControl>
