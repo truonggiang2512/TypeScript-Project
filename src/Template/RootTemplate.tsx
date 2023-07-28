@@ -8,11 +8,7 @@ import Header from "../Layout/Header/Header";
 export default function RootTemplate() {
   // useCheckToken()
   return (
-    <Container
-      maxWidth={false}
-      disableGutters={true}
-      sx={{ height: "100vh", backgroundColor: "primary.light" }}
-    >
+    <Container maxWidth={false} disableGutters={true} sx={{ height: "100vh" }}>
       <Header />
       <Box
         sx={{
