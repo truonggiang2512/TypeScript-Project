@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { Container } from "@mui/system";
 import React from "react";
-import ModeSelect from "../../Component/ModeSelect";
+import ModeSelect from "~/Component/ModeSelect";
 export default function Header() {
   return (
     <Container maxWidth={false} disableGutters={true}>
@@ -20,6 +20,7 @@ export default function Header() {
           <img src="../../assets/favicon/fiverr-svgrepo-com.svg" />
         </Box>
         <Box>
+          <Box></Box>
           <ModeSelect />
         </Box>
       </Box>
