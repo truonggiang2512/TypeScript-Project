@@ -12,8 +12,7 @@ export default function RootTemplate() {
       <Header />
       <Box
         sx={{
-          paddingTop: "60px",
-          backgroundColor: "primary.A100",
+          paddingTop: "120px",
           height: (theme: any) => theme.fiverr.outlet,
         }}
       >
@@ -22,7 +21,6 @@ export default function RootTemplate() {
       <Box
         sx={{
           height: (theme: any) => theme.fiverr.footer,
-          backgroundColor: "primary.dark",
         }}
       >
         <Footer />
