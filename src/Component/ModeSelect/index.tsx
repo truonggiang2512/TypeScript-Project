@@ -4,6 +4,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Typography,
   useColorScheme,
 } from "@mui/material";
 import React from "react";
@@ -31,17 +32,20 @@ function ModeSelect() {
       >
         <MenuItem value="light">
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <LightModeIcon /> Light
+            <LightModeIcon sx={{ color: "primary.main" }} />
+            <Typography sx={{ color: "primary.main" }}>Light</Typography>
           </Box>
         </MenuItem>
         <MenuItem value="dark">
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <DarkModeIcon /> Dark
+            <DarkModeIcon sx={{ color: "primary.main" }} />
+            <Typography sx={{ color: "primary.main" }}>Dark</Typography>
           </Box>
         </MenuItem>
         <MenuItem value="system">
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <SettingsBrightnessIcon /> System
+            <SettingsBrightnessIcon sx={{ color: "primary.main" }} />
+            <Typography sx={{ color: "primary.main" }}>System</Typography>
           </Box>
         </MenuItem>
       </Select>

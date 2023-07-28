@@ -4,7 +4,7 @@ import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 // Create a theme instance.
 const theme = extendTheme({
   fiverr: {
-    header: { height: "60px" },
+    header: { height: "80px" },
     footer: { height: "160px" },
     outlet: { height: "200vh " }
   },

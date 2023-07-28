@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -6,7 +7,7 @@ export default function Home() {
 
   return (
     <div>
-      <div>Home</div>
+      <Box sx={{ backgroundColor: "primary.light" }}>Home</Box>
       <button
         style={{ color: "red" }}
         onClick={() => {
