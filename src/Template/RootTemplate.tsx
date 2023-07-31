@@ -12,7 +12,7 @@ export default function RootTemplate() {
       <Header />
       <Box
         sx={{
-          paddingTop: "120px",
+          paddingTop: { md: "120px", xs: "160px", sm: "160px" },
           height: (theme: any) => theme.fiverr.outlet,
         }}
       >

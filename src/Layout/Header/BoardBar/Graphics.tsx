@@ -43,13 +43,9 @@ function Graphic() {
         }}
       >
         <MenuItem>
-          <ListItemIcon>
-            <ContentCut fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
+          <ListItemText>
+            <Typography>Logo & Brand Identity</Typography>
+          </ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
