@@ -1,19 +1,9 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-
+import Carousel from "./Carousel/Carousel";
 export default function Home() {
-  const navigate = useNavigate();
-
   return (
     <div>
-      <button
-        style={{ color: "red" }}
-        onClick={() => {
-          navigate("admin");
-        }}
-      >
-        admin
-      </button>
+      <Carousel />
     </div>
   );
 }

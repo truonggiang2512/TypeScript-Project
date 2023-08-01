@@ -15,6 +15,10 @@ const theme = extendTheme({
           main: grey[700],
           h1: grey[800],
           boder: grey[300]
+
+        },
+        secondary: {
+          main: '#fff'
         },
         background: {
           paper: "white"
@@ -33,6 +37,9 @@ const theme = extendTheme({
           h1: blue[300],
           boder: blue[300]
         },
+        secondary: {
+          main: "#000"
+        },
         background: {
           paper: "#090909"
         },
@@ -48,8 +55,12 @@ const theme = extendTheme({
       fontSize: 32,
       fontWeight: "500"
     },
+    large: {
+      fontSize: 40,
+      fontWeight: "500",
+    }
     // Disable h3 variant
-    h3: undefined,
+
   },
   components: {
     MuiCssBaseline: {
@@ -73,6 +84,7 @@ const theme = extendTheme({
         variantMapping: {
           // Map the new variant to render a <h1> by default
           title: 'h1',
+          large: "h3"
         },
       },
     },
