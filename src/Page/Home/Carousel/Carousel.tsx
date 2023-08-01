@@ -25,6 +25,7 @@ export default function Carousel() {
           textAlign: "center",
           justifyContent: "space-between",
           height: { xs: "50vh", md: "65vh" },
+          pt: { xs: "0px", md: "0px", sm: "100px" },
         }}
       >
         <Box
