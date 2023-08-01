@@ -8,22 +8,13 @@ import {
   Button,
   IconButton,
   InputAdornment,
-  MenuItem,
   SvgIcon,
   TextField,
   Typography,
-  Menu,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Divider,
 } from "@mui/material";
 import WorkSpace from "./Menu/WorkSpace";
 import Resources from "./Menu/Resources";
 import Support from "./Menu/Support";
-import Profile from "./Menu/Profile";
 import Graphic from "./BoardBar/Graphics";
 import Programming from "./BoardBar/Programming";
 import Marketing from "./BoardBar/Maketing";
@@ -53,6 +44,8 @@ export default function Header() {
         sx={{
           position: "fixed",
           width: "100vw",
+          backgroundColor: "background.paper",
+          zIndex: "99",
         }}
       >
         <Box
@@ -96,32 +89,33 @@ export default function Header() {
               >
                 Fiverr
               </Typography>
+              <Box
+                sx={{
+                  display: { md: "block", xs: "none", sm: "none" },
+                  ml: 3,
+                  width: 400,
+                  maxWidth: "100%",
+                }}
+              >
+                <TextField
+                  type="search"
+                  fullWidth
+                  size="small"
+                  id="search"
+                  label="What service are you looking for?"
+                  variant="outlined"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Box>
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: { md: "block", xs: "none", sm: "none" },
-              ml: 3,
-              width: 400,
-              maxWidth: "100%",
-            }}
-          >
-            <TextField
-              type="search"
-              fullWidth
-              size="small"
-              id="search"
-              label="What service are you looking for?"
-              variant="outlined"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
+
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
