@@ -22,13 +22,13 @@ import Graphic from "../Header/BoardBar/Graphics";
 import Programming from "../Header/BoardBar/Programming";
 import Marketing from "../Header/BoardBar/Maketing";
 import Video from "../Header/BoardBar/Video";
-import Blog from "../../Page/Home/Blog/Blog";
 import Music from "../Header/BoardBar/Music";
 import Business from "../Header/BoardBar/Business";
 import Photography from "../Header/BoardBar/Photography";
 import Service from "../Header/BoardBar/Sevices";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import ModeSelect from "../../Component/ModeSelect";
 // import Profile from "./Menu/Profile";
 interface BurgerDrawerProps {
   isOpen: boolean;
@@ -43,15 +43,18 @@ const BurgerDrawer: React.FC<BurgerDrawerProps> = ({ isOpen, onClose }) => {
   };
   return (
     <Drawer anchor="left" open={isOpen} onClose={onClose}>
-      <List sx={{ width: 250 }}>
+      <List sx={{ width: 250, backgroundColor: "background.paper" }}>
         <ListItem>
-          <Button variant="outlined">Join Fiverr</Button>
+          <Button variant="contained">Join Fiverr</Button>
         </ListItem>
         <ListItem>
           <Button variant="text">Login</Button>
         </ListItem>
         <ListItemButton onClick={handleClick}>
-          <ListItemText primary="Browser Categories" />
+          <ListItemText
+            sx={{ color: "primary.main" }}
+            primary="Browser Categories"
+          />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -99,20 +102,29 @@ const BurgerDrawer: React.FC<BurgerDrawerProps> = ({ isOpen, onClose }) => {
           </List>
         </Collapse>
         <ListItem>
-          <Typography variant="subtitle2">General</Typography>
+          <Typography sx={{ color: "primary.main" }} variant="subtitle2">
+            General
+          </Typography>
         </ListItem>
       </List>
       <Divider />
-      <ListItem>
-        <ListItemIcon>
-          <Resources />
-        </ListItemIcon>
-      </ListItem>
-      <ListItem>
-        <ListItemIcon>
-          <Support />
-        </ListItemIcon>
-      </ListItem>
+      <List sx={{ backgroundColor: "background.paper" }}>
+        <ListItem>
+          <ListItemIcon>
+            <Resources />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Support />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <ModeSelect />
+          </ListItemIcon>
+        </ListItem>
+      </List>
     </Drawer>
   );
 };

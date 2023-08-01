@@ -16,6 +16,12 @@ const theme = extendTheme({
           h1: grey[800],
           boder: grey[300]
         },
+        background: {
+          paper: "white"
+        },
+        hover: {
+          color: "white"
+        }
       },
       spacing: (factor) => `${8 * factor}px`,
 
@@ -27,6 +33,12 @@ const theme = extendTheme({
           h1: blue[300],
           boder: blue[300]
         },
+        background: {
+          paper: "#090909"
+        },
+        hover: {
+          color: "#272727"
+        }
       },
       spacing: (factor) => `${8 * factor}px`,
     },
@@ -48,10 +60,10 @@ const theme = extendTheme({
             height: "8px"
           },
           '*::-webkit-scrollbar-thumb': {
-            backgroundColor: "red"
+            backgroundColor: "grey"
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: "blue"
+            backgroundColor: "black"
           }
         }
       }
@@ -102,6 +114,8 @@ const theme = extendTheme({
         }
       },
     },
+
+
   },
 });
 
