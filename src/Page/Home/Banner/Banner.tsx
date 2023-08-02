@@ -5,7 +5,7 @@ type Props = {};
 
 export const Banner = (props: Props) => {
   return (
-    <Container maxWidth="xl">
+    <Container sx={{ pb: 12 }} maxWidth="xl">
       <Box
         sx={{
           display: "flex",

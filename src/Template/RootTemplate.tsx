@@ -13,18 +13,12 @@ export default function RootTemplate() {
       <Box
         sx={{
           paddingTop: { md: "120px", xs: "160px", sm: "160px" },
-          height: (theme: any) => theme.fiverr.outlet,
         }}
       >
         <Outlet />
       </Box>
-      <Box
-        sx={{
-          height: (theme: any) => theme.fiverr.footer,
-        }}
-      >
-        <Footer />
-      </Box>
+
+      <Footer />
     </Container>
   );
 }

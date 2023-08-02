@@ -91,7 +91,13 @@ const theme = extendTheme({
       lineHeight: 1.5,
       fontSize: 14,
       fontWeight: 600,
-    }
+    },
+    h6: {
+      lineHeight: 3.0,
+      fontSize: 16,
+      fontWeight: 400,
+      color: "#73767e"
+    },
   },
   components: {
     MuiCssBaseline: {
