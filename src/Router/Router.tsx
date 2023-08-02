@@ -4,7 +4,6 @@ import RootTemplate from "../Template/RootTemplate";
 import Profile from "../Page/Profile/Profile";
 import Admin from "../Page/Admin/Admin";
 import Detail from "../Page/Detail/Detail";
-import JobList from "../Page/JobList/JobList";
 import Home from "../Page/Home/Home";
 import Error from "../Component/Error/Error";
 
@@ -29,10 +28,6 @@ const router = createBrowserRouter([
       {
         path: "/detail",
         element: <Detail />,
-      },
-      {
-        path: "/joblist",
-        element: <JobList />,
       },
     ],
   },
