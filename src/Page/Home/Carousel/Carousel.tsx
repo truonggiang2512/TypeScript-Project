@@ -74,7 +74,9 @@ export default function Carousel() {
               gap: 1,
             }}
           >
-            <Typography sx={{ color: "#fff" }}>Popular :</Typography>
+            <Typography sx={{ color: "#fff" }} variant="body2">
+              Popular :
+            </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
               <Button
                 variant="outlined"
