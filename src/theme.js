@@ -22,7 +22,8 @@ const theme = extendTheme({
         },
         background: {
           paper: "white",
-          proposition: "#f0fdf6"
+          proposition: "#f0fdf6",
+          solutions: "#0d084d"
         },
         hover: {
           color: "white"
@@ -43,7 +44,8 @@ const theme = extendTheme({
         },
         background: {
           paper: "#090909",
-          proposition: "#212121"
+          proposition: "#212121",
+          solutions: "#212121"
         },
         hover: {
           color: "#272727"
@@ -55,18 +57,18 @@ const theme = extendTheme({
 
   typography: {
     h3: {
-      lineHeight: 1.6,
+      lineHeight: 1.4,
       fontSize: 32,
-      fontWeight: 500,
+      fontWeight: 700,
     },
     subtitle2: {
-      lineHeight: 1.6,
+      lineHeight: 1.5,
       fontSize: 18,
       fontWeight: 500,
 
     },
     subtitle1: {
-      lineHeight: 1.6,
+      lineHeight: 1.5,
       fontSize: 18,
       fontWeight: 400,
     }
