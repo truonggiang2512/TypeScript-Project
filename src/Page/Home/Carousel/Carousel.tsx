@@ -52,6 +52,7 @@ export default function Carousel() {
                 id="search1"
                 label="What service are you looking for?"
                 variant="filled"
+                color="secondary"
                 InputProps={{
                   style: {
                     background: "white",
