@@ -20,10 +20,10 @@ function Proposition() {
           bgcolor: "background.proposition",
         }}
       >
-        <Box sx={{ display: { md: "flex", xs: "block" } }}>
+        <Box sx={{ display: { md: "flex", xs: "block", sm: "block" } }}>
           <Box
             sx={{
-              textAlign: { xs: "center", md: "left" },
+              textAlign: "left",
               width: { xs: "100%", md: "50%" },
             }}
             maxHeight="100%"
