@@ -5,7 +5,8 @@ import HomeServices from "./HomeServices/HomeServices";
 import Proposition from "./Proposition/Proposition";
 import Solutions from "./Solutions/Solutions";
 import Guide from "./Guides/Guide";
-// import Joblist from "./JobList/JobList";
+import Joblist from "./JobList/JobList";
+import { Banner } from "./Banner/Banner";
 export default function Home() {
   return (
     <div>
@@ -14,8 +15,9 @@ export default function Home() {
       <Proposition />
       <Categories />
       <Solutions />
-      {/* <Joblist /> */}
+      <Joblist />
       <Guide />
+      <Banner />
     </div>
   );
 }
