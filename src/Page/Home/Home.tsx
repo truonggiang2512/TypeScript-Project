@@ -1,10 +1,11 @@
 import React from "react";
-import JobList from "../JobList/JobList";
 import Carousel from "./Carousel/Carousel";
 import Categories from "./Categories/Categories";
 import HomeServices from "./HomeServices/HomeServices";
 import Proposition from "./Proposition/Proposition";
 import Solutions from "./Solutions/Solutions";
+import Guide from "./Guides/Guide";
+// import Joblist from "./JobList/JobList";
 export default function Home() {
   return (
     <div>
@@ -13,7 +14,8 @@ export default function Home() {
       <Proposition />
       <Categories />
       <Solutions />
-      <JobList />
+      {/* <Joblist /> */}
+      <Guide />
     </div>
   );
 }
