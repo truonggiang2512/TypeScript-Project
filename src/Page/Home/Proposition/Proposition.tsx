@@ -17,11 +17,10 @@ function Proposition() {
       <Box
         sx={{
           padding: "64px 50px",
-
-          bgcolor: "#f0fdf6",
+          bgcolor: "background.proposition",
         }}
       >
-        <Box sx={{ display: { md: "flex", xs: "block" }, bgcolor: "#f0fdf6" }}>
+        <Box sx={{ display: { md: "flex", xs: "block" } }}>
           <Box
             sx={{
               textAlign: { xs: "center", md: "left" },
