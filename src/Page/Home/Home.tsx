@@ -1,4 +1,5 @@
 import React from "react";
+import JobList from "../JobList/JobList";
 import Carousel from "./Carousel/Carousel";
 import Categories from "./Categories/Categories";
 import HomeServices from "./HomeServices/HomeServices";
@@ -12,6 +13,7 @@ export default function Home() {
       <Proposition />
       <Categories />
       <Solutions />
+      <JobList />
     </div>
   );
 }

@@ -71,6 +71,16 @@ const theme = extendTheme({
       lineHeight: 1.5,
       fontSize: 18,
       fontWeight: 400,
+    },
+    body1: {
+      lineHeight: 1.5,
+      fontSize: 14,
+      fontWeight: 300,
+    },
+    body2: {
+      lineHeight: 1.5,
+      fontSize: 14,
+      fontWeight: 600,
     }
   },
   components: {
