@@ -21,7 +21,8 @@ const theme = extendTheme({
           main: '#fff'
         },
         background: {
-          paper: "white"
+          paper: "white",
+          proposition: "#f0fdf6"
         },
         hover: {
           color: "white"
@@ -41,7 +42,8 @@ const theme = extendTheme({
           main: "#000"
         },
         background: {
-          paper: "#090909"
+          paper: "#090909",
+          proposition: "#212121"
         },
         hover: {
           color: "#272727"
@@ -61,6 +63,7 @@ const theme = extendTheme({
       lineHeight: 1.6,
       fontSize: 18,
       fontWeight: 500,
+
     },
     subtitle1: {
       lineHeight: 1.6,
