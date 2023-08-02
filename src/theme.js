@@ -33,7 +33,7 @@ const theme = extendTheme({
     dark: {
       palette: {
         primary: {
-          main: blue[300],
+          main: '#fff',
           h1: blue[300],
           boder: blue[300]
         },
@@ -50,17 +50,23 @@ const theme = extendTheme({
       spacing: (factor) => `${8 * factor}px`,
     },
   },
-  typography: {
-    title: {
-      fontSize: 32,
-      fontWeight: "500"
-    },
-    large: {
-      fontSize: 40,
-      fontWeight: "500",
-    }
-    // Disable h3 variant
 
+  typography: {
+    h3: {
+      lineHeight: 1.6,
+      fontSize: 32,
+      fontWeight: 500,
+    },
+    subtitle2: {
+      lineHeight: 1.6,
+      fontSize: 18,
+      fontWeight: 500,
+    },
+    subtitle1: {
+      lineHeight: 1.6,
+      fontSize: 18,
+      fontWeight: 400,
+    }
   },
   components: {
     MuiCssBaseline: {
@@ -79,15 +85,7 @@ const theme = extendTheme({
         }
       }
     },
-    MuiTypography: {
-      defaultProps: {
-        variantMapping: {
-          // Map the new variant to render a <h1> by default
-          title: 'h1',
-          large: "h3"
-        },
-      },
-    },
+
     MuiButton: {
       styleOverrides: {
         root: {
@@ -98,7 +96,7 @@ const theme = extendTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: theme.palette.primary.main,
+          color: "#898989",
           fontSize: "0.875 rem",
         })
       },

@@ -57,7 +57,7 @@ export default function Header() {
             justifyContent: "space-between",
             height: (theme: any) => theme.fiverr.header,
             border: 1,
-            borderColor: "primary.boder",
+            borderColor: "primary.main",
             borderBottom: 0,
           }}
         >
@@ -84,7 +84,7 @@ export default function Header() {
                 sx={{
                   fontSize: "1.7rem",
                   fontWeight: "bold",
-                  color: "primary.h1",
+                  color: "primary.main",
                 }}
               >
                 Fiverr
@@ -173,7 +173,7 @@ export default function Header() {
             width: "100vw",
             justifyContent: "space-between",
             border: 1,
-            borderColor: "primary.boder",
+            borderColor: "primary.main",
           }}
         >
           <Graphic />
