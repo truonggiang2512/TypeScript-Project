@@ -58,7 +58,7 @@ export default function Joblist() {
     ],
   };
   return (
-    <Container sx={{ bgcolor: "#f5f5f5", py: 12 }} maxWidth="xl">
+    <Container sx={{ bgcolor: "background.joblist", py: 12 }} maxWidth="xl">
       <Typography pl={3} pb={3} sx={{ fontWeight: "bold" }} variant="h4">
         Inspiring work made on Fiverr
       </Typography>

@@ -14,16 +14,19 @@ const theme = extendTheme({
         primary: {
           main: grey[700],
           h1: grey[800],
-          boder: grey[300]
+          boder: grey[300],
+          buttonBanner: "#1cbf73"
 
         },
         secondary: {
           main: '#fff'
         },
+
         background: {
           paper: "white",
           proposition: "#f0fdf6",
-          solutions: "#0d084d"
+          solutions: "#0d084d",
+          joblist: "#f5f5f5"
         },
         hover: {
           color: "white"
@@ -37,7 +40,8 @@ const theme = extendTheme({
         primary: {
           main: '#fff',
           h1: blue[300],
-          boder: blue[300]
+          boder: blue[300],
+          buttonBanner: "#fff"
         },
         secondary: {
           main: "#000"
@@ -45,7 +49,8 @@ const theme = extendTheme({
         background: {
           paper: "#090909",
           proposition: "#212121",
-          solutions: "#212121"
+          solutions: "#212121",
+          joblist: "#000"
         },
         hover: {
           color: "#272727"
@@ -56,6 +61,11 @@ const theme = extendTheme({
   },
 
   typography: {
+    h1: {
+      lineHeight: 1.4,
+      fontSize: 40,
+      fontWeight: 600,
+    },
     h3: {
       lineHeight: 1.4,
       fontSize: 32,
