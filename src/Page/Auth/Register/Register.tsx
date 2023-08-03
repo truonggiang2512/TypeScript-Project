@@ -30,7 +30,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "80vw",
   height: "90vh",
-  bgcolor: "background.paper",
+  bgcolor: "background.auth",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,

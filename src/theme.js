@@ -26,7 +26,8 @@ const theme = extendTheme({
           paper: "white",
           proposition: "#f0fdf6",
           solutions: "#0d084d",
-          joblist: "#f5f5f5"
+          joblist: "#f5f5f5",
+          auth: "#fff"
         },
         hover: {
           color: "white"
@@ -50,7 +51,8 @@ const theme = extendTheme({
           paper: "#090909",
           proposition: "#212121",
           solutions: "#212121",
-          joblist: "#000"
+          joblist: "#000",
+          auth: "#212121"
         },
         hover: {
           color: "#272727"
