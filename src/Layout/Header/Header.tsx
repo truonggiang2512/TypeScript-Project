@@ -28,6 +28,7 @@ import Service from "./BoardBar/Sevices";
 import SearchIcon from "@mui/icons-material/Search";
 import BurgerDrawer from "../BurgerDrawer/BurgerDrawer";
 import Register from "../../Page/Auth/Register/Register";
+import Login from "../../Page/Auth/Login/Login";
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -127,7 +128,8 @@ export default function Header() {
             <Support />
             <Resources />
             <WorkSpace />
-            <Button variant="text">Login</Button>
+            <Login />
+
             <ModeSelect />
             {/* <Profile /> */}
             <Register />

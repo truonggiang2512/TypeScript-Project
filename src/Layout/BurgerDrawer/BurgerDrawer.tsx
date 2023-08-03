@@ -29,6 +29,8 @@ import Service from "../Header/BoardBar/Sevices";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ModeSelect from "../../Component/ModeSelect";
+import Login from "../../Page/Auth/Login/Login";
+import Register from "../../Page/Auth/Register/Register";
 // import Profile from "./Menu/Profile";
 interface BurgerDrawerProps {
   isOpen: boolean;
@@ -45,10 +47,10 @@ const BurgerDrawer: React.FC<BurgerDrawerProps> = ({ isOpen, onClose }) => {
     <Drawer anchor="left" open={isOpen} onClose={onClose}>
       <List sx={{ width: 250, backgroundColor: "background.paper" }}>
         <ListItem>
-          <Button variant="contained">Join Fiverr</Button>
+          <Register />
         </ListItem>
         <ListItem>
-          <Button variant="text">Login</Button>
+          <Login />
         </ListItem>
         <ListItemButton onClick={handleClick}>
           <ListItemText

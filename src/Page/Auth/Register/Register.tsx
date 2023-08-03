@@ -84,7 +84,7 @@ export default function Register() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Box sx={{ display: "" }}>
+          <Box>
             <Box id="modal-modal-description">
               <Box
                 pb={10}
