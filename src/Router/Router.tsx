@@ -6,6 +6,7 @@ import Admin from "../Page/Admin/Admin";
 import Detail from "../Page/Detail/Detail";
 import Home from "../Page/Home/Home";
 import Error from "../Component/Error/Error";
+import Search from "../Page/Search/Search";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/detail",
         element: <Detail />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
     ],
   },

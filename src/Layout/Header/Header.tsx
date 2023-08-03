@@ -28,8 +28,10 @@ import Service from "./BoardBar/Sevices";
 import SearchIcon from "@mui/icons-material/Search";
 import BurgerDrawer from "../BurgerDrawer/BurgerDrawer";
 import Register from "../../Page/Auth/Register/Register";
+import { useNavigate } from "react-router-dom";
 import Login from "../../Page/Auth/Login/Login";
 export default function Header() {
+  const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -129,9 +131,16 @@ export default function Header() {
             <Resources />
             <WorkSpace />
             <Login />
-
             <ModeSelect />
             {/* <Profile /> */}
+            <Button
+              variant="text"
+              onClick={() => {
+                navigate("/search");
+              }}
+            >
+              Search
+            </Button>
             <Register />
           </Box>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
