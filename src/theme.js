@@ -73,6 +73,11 @@ const theme = extendTheme({
       fontSize: 32,
       fontWeight: 700,
     },
+    h2: {
+      lineHeight: 1.4,
+      fontSize: 32,
+      fontWeight: 400,
+    },
     subtitle2: {
       lineHeight: 1.5,
       fontSize: 18,
