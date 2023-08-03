@@ -27,6 +27,7 @@ import Photography from "./BoardBar/Photography";
 import Service from "./BoardBar/Sevices";
 import SearchIcon from "@mui/icons-material/Search";
 import BurgerDrawer from "../BurgerDrawer/BurgerDrawer";
+import Register from "../../Page/Auth/Register/Register";
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -129,14 +130,10 @@ export default function Header() {
             <Button variant="text">Login</Button>
             <ModeSelect />
             {/* <Profile /> */}
-            <Button color="success" variant="outlined">
-              Join
-            </Button>
+            <Register />
           </Box>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
-            <Button color="success" variant="outlined">
-              Join
-            </Button>
+            <Register />
           </Box>
         </Box>
         <Box

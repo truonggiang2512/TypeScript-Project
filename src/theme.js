@@ -39,7 +39,7 @@ const theme = extendTheme({
       palette: {
         primary: {
           main: '#fff',
-          h1: blue[300],
+          h1: '#fff',
           boder: blue[300],
           buttonBanner: "#fff"
         },
