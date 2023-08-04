@@ -60,9 +60,6 @@ export default function Header() {
             width: "100vw",
             justifyContent: "space-between",
             height: (theme: any) => theme.fiverr.header,
-            border: 1,
-            borderColor: "primary.main",
-            borderBottom: 0,
           }}
         >
           <Box sx={{ display: { xs: "block", md: "none" } }}>
@@ -195,13 +192,14 @@ export default function Header() {
         </Box>
         <Box
           px={4}
+          py={0.3}
           sx={{
             display: { md: "flex", xs: "none" },
             alignItems: "center",
             width: "100vw",
             justifyContent: "space-between",
             border: 1,
-            borderColor: "primary.main",
+            borderColor: "#212121",
           }}
         >
           <Graphic />
