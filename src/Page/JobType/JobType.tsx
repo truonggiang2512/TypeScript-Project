@@ -45,7 +45,7 @@ function JobType({}: Props) {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ pt: 7, px: { md: 7, xs: 0 } }} maxWidth="xl">
+        <Box sx={{ pt: 7, px: { md: 7, xs: 0 } }}>
           <Box>
             <Typography sx={{ fontSize: "24px", fontWeight: "500", py: 3 }}>
               Explore Video & Animation
