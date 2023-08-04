@@ -4,7 +4,9 @@ import React from "react";
 function Categories() {
   return (
     <Container sx={{ pt: 13 }} maxWidth="xl">
-      <Typography variant="h3">You need it, we've got it</Typography>
+      <Box px={3}>
+        <Typography variant="h3">You need it, we've got it</Typography>
+      </Box>
       <Box sx={{ py: 10 }}>
         <Grid columns={{ md: 20, xs: 8, sm: 12 }} container item spacing={8}>
           <Grid item xs={4} sx={{ cursor: "pointer" }}>
