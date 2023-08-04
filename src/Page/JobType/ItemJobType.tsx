@@ -6,11 +6,7 @@ type Props = {};
 function ItemJobType({}: Props) {
   return (
     <Box>
-      <Box
-        sx={{
-          maxWidth: 280,
-        }}
-      >
+      <Box sx={{}}>
         <img
           width="100%"
           src="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/3baf91d2ca0c49f0973f2f9e3e210f86-1682409420385/Website%20Development.png"
