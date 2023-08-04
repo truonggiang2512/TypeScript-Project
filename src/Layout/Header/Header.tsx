@@ -141,6 +141,14 @@ export default function Header() {
             >
               Search
             </Button>
+            <Button
+              variant="text"
+              onClick={() => {
+                navigate("/jobtype");
+              }}
+            >
+              Job Type
+            </Button>
             <Register />
           </Box>
           <Box sx={{ display: { xs: "block", md: "none" } }}>

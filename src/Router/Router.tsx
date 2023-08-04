@@ -7,6 +7,7 @@ import Detail from "../Page/Detail/Detail";
 import Home from "../Page/Home/Home";
 import Error from "../Component/Error/Error";
 import Search from "../Page/Search/Search";
+import JobType from "../Page/JobType/JobType";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/jobtype",
+        element: <JobType />,
       },
     ],
   },
