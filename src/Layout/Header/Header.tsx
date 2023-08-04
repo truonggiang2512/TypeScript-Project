@@ -85,10 +85,14 @@ export default function Header() {
                 sx={{ color: "primary.main" }}
               />
               <Typography
+                onClick={() => {
+                  navigate("/home");
+                }}
                 sx={{
                   fontSize: "1.7rem",
                   fontWeight: "bold",
                   color: "primary.main",
+                  cursor: "pointer",
                 }}
               >
                 Fiverr
@@ -148,6 +152,14 @@ export default function Header() {
               }}
             >
               Job Type
+            </Button>
+            <Button
+              variant="text"
+              onClick={() => {
+                navigate("/detail");
+              }}
+            >
+              Detail
             </Button>
             <Register />
           </Box>
