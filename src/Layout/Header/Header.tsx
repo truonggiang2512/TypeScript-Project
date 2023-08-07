@@ -158,6 +158,14 @@ export default function Header() {
             >
               Detail
             </Button>
+            <Button
+              variant="text"
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
+              Profile
+            </Button>
             <Register />
           </Box>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
