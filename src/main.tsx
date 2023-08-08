@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./Services/redux/configStore";
 import router from "./Router/Router";
 import { RouterProvider } from "react-router-dom";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <Provider store={store}>
