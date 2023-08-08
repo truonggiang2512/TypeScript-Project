@@ -8,7 +8,10 @@ import Home from "../Page/Home/Home";
 import Error from "../Component/Error/Error";
 import Search from "../Page/Search/Search";
 import JobType from "../Page/JobType/JobType";
-
+import storage from "../Utils/storage";
+import Login from "../Page/Auth/Login/Login";
+import Register from "../Page/Auth/Register/Register";
+const isLogin = storage.get("isLogin");
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: "/jobtype",
         element: <JobType />,
+      },
+      {
+        path: "/login",
+        element: isLogin == true ? <Profile /> : <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

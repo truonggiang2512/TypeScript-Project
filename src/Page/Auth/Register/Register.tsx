@@ -9,10 +9,20 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import Daypicker from "./DayPicker";
-
-interface FormData {
-  id: 0;
+import { DateField } from "@mui/x-date-pickers/DateField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useDispatch } from "react-redux";
+import { DispatchType } from "../../../Services/redux/configStore";
+import { useFormik } from "formik";
+import dayjs from "dayjs";
+import * as yup from "yup";
+import "dayjs/locale/en-gb";
+import { signupAsyncAction } from "../../../Services/redux/reducers/userReducer";
+type Props = {};
+export interface UserSignupFrm {
+  id: number;
   name: string;
   email: string;
   password: string;
@@ -37,41 +47,45 @@ const style = {
   maxHeight: "90vh",
   overflowY: "auto",
 };
-export default function Register() {
-  const [formData, setFormData] = useState<FormData>({
-    id: 0,
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    birthday: "",
-    gender: true,
-    role: "",
-    skill: [""],
-    certification: [""],
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // TODO: Handle form submission logic here
-  };
+export default function Register({}: Props) {
+  const dispatch: DispatchType = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [value, setValue] = React.useState("");
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    console.log(value);
-  };
+  const signupFrm = useFormik<UserSignupFrm>({
+    initialValues: {
+      id: 0,
+      name: "",
+      email: "",
+      password: "",
+      phone: "",
+      birthday: "20/2/1999",
+      gender: true,
+      role: "",
+      skill: [""],
+      certification: [""],
+    },
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .email("email is invalid")
+        .required("email cannot be blank"),
+      password: yup.string().required("password cannot be blank"),
+      name: yup.string().required("name cannot be blank"),
+      phone: yup.number().required("phone cannot be blank"),
+    }),
+    onSubmit: (values: UserSignupFrm) => {
+      console.log(values);
+      const actionApi = signupAsyncAction(values);
+      dispatch(actionApi);
+
+      // if (isLoginModel == true) {
+      //   setOpen(false);
+      // }
+    },
+  });
+
   return (
     <div>
       <Button color="success" variant="outlined" onClick={handleOpen}>
@@ -123,7 +137,7 @@ export default function Register() {
               </Box>
 
               <Box pt={4}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={signupFrm.handleSubmit}>
                   <Box
                     sx={{
                       display: { md: "flex", xs: "block" },
@@ -137,10 +151,18 @@ export default function Register() {
                             fullWidth
                             label="Full Name"
                             name="name"
-                            value={formData.name}
-                            onChange={handleChange}
+                            onBlur={signupFrm.handleBlur}
+                            onChange={signupFrm.handleChange}
                           />
                         </FormControl>
+                        {signupFrm.errors.name && (
+                          <p
+                            style={{ color: "red", margin: "5px 0px 0 0" }}
+                            className="text text-danger"
+                          >
+                            (*) {signupFrm.errors.name}
+                          </p>
+                        )}
                       </Box>
                       <Box pt={2}>
                         <FormControl fullWidth>
@@ -148,10 +170,18 @@ export default function Register() {
                             fullWidth
                             label="Email"
                             name="email"
-                            value={formData.email}
-                            onChange={handleChange}
+                            onBlur={signupFrm.handleBlur}
+                            onChange={signupFrm.handleChange}
                           />
                         </FormControl>
+                        {signupFrm.errors.email && (
+                          <p
+                            style={{ color: "red", margin: "5px 0px 0 0" }}
+                            className="text text-danger"
+                          >
+                            (*) {signupFrm.errors.email}
+                          </p>
+                        )}
                       </Box>
                       <Box pt={2}>
                         <FormControl fullWidth>
@@ -159,10 +189,18 @@ export default function Register() {
                             fullWidth
                             label="Password"
                             name="password"
-                            value={formData.password}
-                            onChange={handleChange}
+                            onBlur={signupFrm.handleBlur}
+                            onChange={signupFrm.handleChange}
                           />
                         </FormControl>
+                        {signupFrm.errors.password && (
+                          <p
+                            style={{ color: "red", margin: "5px 0px 0 0" }}
+                            className="text text-danger"
+                          >
+                            (*) {signupFrm.errors.password}
+                          </p>
+                        )}
                       </Box>
                     </Box>
                     <Box
@@ -182,27 +220,59 @@ export default function Register() {
                             fullWidth
                             label="Phone"
                             name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
+                            onBlur={signupFrm.handleBlur}
+                            onChange={signupFrm.handleChange}
                           />
                         </FormControl>
+                        {signupFrm.errors.phone && (
+                          <p
+                            style={{ color: "red", margin: "5px 0px 0 0" }}
+                            className="text text-danger"
+                          >
+                            (*) {signupFrm.errors.phone}
+                          </p>
+                        )}
                       </Box>
-                      <Box
-                        pt={2}
-                        sx={{ paddingRight: { md: "90px", xs: "0px" } }}
-                      >
-                        <FormControl fullWidth>
-                          <TextField
-                            fullWidth
-                            label="Password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                          />
-                        </FormControl>
-                      </Box>
+
                       <Box pt={2}>
-                        <Daypicker />
+                        <LocalizationProvider
+                          adapterLocale="en-gb"
+                          dateAdapter={AdapterDayjs}
+                        >
+                          <DateField
+                            disableFuture
+                            format="DD-MM-YYYY"
+                            label="Birthday"
+                          />
+                        </LocalizationProvider>
+                      </Box>
+                      <Box mt={2}>
+                        <FormControl>
+                          <FormLabel id="demo-row-radio-buttons-group-label">
+                            Gender
+                          </FormLabel>
+                          <RadioGroup
+                            row
+                            aria-labelledby="demo-row-radio-buttons-group-label"
+                            name="row-radio-buttons-group"
+                            defaultValue={true}
+                            onChange={signupFrm.handleChange}
+                          >
+                            <FormControlLabel
+                              value={false}
+                              control={<Radio />}
+                              label="Female"
+                              name="gender"
+                            />
+                            <FormControlLabel
+                              defaultChecked={true}
+                              value={true}
+                              control={<Radio />}
+                              label="Male"
+                              name="gender"
+                            />
+                          </RadioGroup>
+                        </FormControl>
                       </Box>
                     </Box>
                   </Box>
@@ -213,41 +283,10 @@ export default function Register() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <Box mt={2}>
-                      <FormControl>
-                        <FormLabel id="demo-row-radio-buttons-group-label">
-                          Gender
-                        </FormLabel>
-                        <RadioGroup
-                          row
-                          aria-labelledby="demo-row-radio-buttons-group-label"
-                          name="row-radio-buttons-group"
-                          value={value}
-                          onChange={handleChange1}
-                        >
-                          <FormControlLabel
-                            value={false}
-                            control={<Radio />}
-                            label="Female"
-                          />
-                          <FormControlLabel
-                            value={true}
-                            control={<Radio />}
-                            label="Male"
-                          />
-                        </RadioGroup>
-                      </FormControl>
-                    </Box>
                     <Box pt={2}>
-                      <FormControl margin="normal">
-                        <Button
-                          type="submit"
-                          variant="contained"
-                          color="primary"
-                        >
-                          Sign Up
-                        </Button>
-                      </FormControl>
+                      <Button type="submit" variant="contained" color="primary">
+                        Sign Up
+                      </Button>
                     </Box>
                   </Box>
                 </form>

@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { Container } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModeSelect from "../../Component/ModeSelect";
 import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
 import { ReactComponent as fiverrLogo } from "../../assets/favicon/fiverr_icon_236762.svg";
@@ -30,10 +30,13 @@ import BurgerDrawer from "../BurgerDrawer/BurgerDrawer";
 import Register from "../../Page/Auth/Register/Register";
 import { useNavigate } from "react-router-dom";
 import Login from "../../Page/Auth/Login/Login";
+import storage from "../../Utils/storage";
+import { TOKEN } from "../../Utils/config";
 export default function Header() {
+  const token = storage.get(TOKEN);
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
+  const [tokenLogin, setTokenLogin] = useState(token);
   const handleDrawerOpen = () => {
     setIsDrawerOpen(true);
   };
@@ -42,6 +45,29 @@ export default function Header() {
     setIsDrawerOpen(false);
   };
 
+  const isDisableLogin: any = () => {
+    if (token) {
+      return (
+        <Button
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          Profile
+        </Button>
+      );
+    } else {
+      return (
+        <Box sx={{ display: "flex" }}>
+          <Login />
+          <Register />
+        </Box>
+      );
+    }
+  };
+  useEffect(() => {
+    setTokenLogin(+1);
+  }, [tokenLogin]);
   return (
     <Container maxWidth={false} disableGutters={true}>
       <Box
@@ -131,9 +157,7 @@ export default function Header() {
             <Support />
             <Resources />
             <WorkSpace />
-            <Login />
             <ModeSelect />
-            {/* <Profile /> */}
             <Button
               variant="text"
               onClick={() => {
@@ -158,7 +182,7 @@ export default function Header() {
             >
               Detail
             </Button>
-            <Register />
+            {isDisableLogin()}
           </Box>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
             <Register />
