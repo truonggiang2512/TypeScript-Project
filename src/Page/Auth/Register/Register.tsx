@@ -79,10 +79,6 @@ export default function Register({}: Props) {
       console.log(values);
       const actionApi = signupAsyncAction(values);
       dispatch(actionApi);
-
-      // if (isLoginModel == true) {
-      //   setOpen(false);
-      // }
     },
   });
 

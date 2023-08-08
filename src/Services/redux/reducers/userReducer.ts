@@ -98,7 +98,7 @@ export const loginAsyncAction = createAsyncThunk(
 );
 export const signupAsyncAction = createAsyncThunk(
   "signupAsyncAction",
-  async (userRegister, { rejectWithValue }) => {
+  async (userRegister: UserSignupFrm, { rejectWithValue }) => {
     try {
       const res = await http.post("auth/signup", userRegister);
       console.log(res.data.content);
