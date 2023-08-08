@@ -23,6 +23,20 @@ httpNonAuth.interceptors.request.use(
     config.baseURL = DOMAIN;
     config.headers = { ...config.headers };
     config.headers.TOKEN_CYBERSOFT = "TOKEN_CYBERSOFT";
+
+    return config;
+  },
+  (err: any) => {
+    return Promise.reject(err);
+  }
+);
+http.interceptors.request.use(
+  (config: any) => {
+    config.headers = { ...config.headers };
+    let token = storage.get(USER_LOGIN)?.accessToken;
+    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.tokenCybersoft = `${TOKEN_CYBERSOFT}`;
+    console.log(config);
     return config;
   },
   (err: any) => {
