@@ -12,7 +12,7 @@ const theme = extendTheme({
     light: {
       palette: {
         primary: {
-          main: grey[700],
+          main: grey[900],
           h1: grey[800],
           boder: grey[300],
           buttonBanner: "#1cbf73"

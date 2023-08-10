@@ -2,17 +2,29 @@ import { Avatar, Box, Typography, Container, Button } from "@mui/material";
 import ModeIcon from "@mui/icons-material/Mode";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PersonIcon from "@mui/icons-material/Person";
-import AddIcon from "@mui/icons-material/Add";
 import GoogleIcon from "@mui/icons-material/Google";
 import FactoryTwoToneIcon from "@mui/icons-material/FactoryTwoTone";
 import NavigateNextTwoToneIcon from "@mui/icons-material/NavigateNextTwoTone";
-import React from "react";
+import React, { useEffect } from "react";
 import { Add } from "@mui/icons-material";
 import HireItem from "./HireItem";
+import storage from "../../Utils/storage";
+import { USER_LOGIN } from "../../Utils/constant";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileAsync } from "../../Services/redux/reducers/ProfileReducer/profileReducer";
 
 type Props = {};
 
 const Profile = (props: Props) => {
+  const dispatch = useDispatch();
+  const idUser = storage.get(USER_LOGIN);
+  const userProfile: any = useSelector(
+    (state: any) => state.profileReducer.arrProfile
+  );
+  useEffect(() => {
+    const actionProfileApi: any = getProfileAsync(idUser.user.id);
+    dispatch(actionProfileApi);
+  }, []);
   return (
     <Container
       maxWidth={false}
@@ -45,10 +57,10 @@ const Profile = (props: Props) => {
               </Box>
               <Box py={2} sx={{ textAlign: "center" }}>
                 <Typography sx={{ color: "#000" }} variant="subtitle2">
-                  Your display name
+                  {userProfile.name}
                 </Typography>
                 <Typography sx={{ color: "#000" }} variant="body1">
-                  @docute
+                  @{userProfile.name}
                 </Typography>
                 <Button size="small">
                   <ModeIcon sx={{ color: "#000" }} fontSize="small" />

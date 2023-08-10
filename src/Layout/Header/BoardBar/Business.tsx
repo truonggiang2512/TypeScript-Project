@@ -2,40 +2,27 @@ import Box from "@mui/system/Box";
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Collapse,
-  Divider,
   List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Typography,
 } from "@mui/material";
-import {
-  Cloud,
-  ContentCopy,
-  ContentCut,
-  ContentPaste,
-  ExpandLess,
-  ExpandMore,
-} from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Graphic from "./Graphics";
-import Programming from "./Programming";
+
 function Business() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  function handleClick(event: any) {
+    if (anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget);
+    }
+  }
+
+  function handleClose() {
     setAnchorEl(null);
-  };
+  }
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => {
@@ -57,28 +44,20 @@ function Business() {
     return (
       <Box>
         <Button
-          id="basic-button-business"
-          aria-controls={open ? "basic-menu-business" : undefined}
+          aria-owns={anchorEl ? "simple-menu" : undefined}
           aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
+          onMouseOver={handleClick}
         >
           Business
         </Button>
 
         <Menu
-          id="basic-menu-business"
+          id="simple-menu"
           anchorEl={anchorEl}
-          open={open}
+          open={Boolean(anchorEl)}
           onClose={handleClose}
-          PaperProps={{
-            style: {
-              display: "flex",
-            },
-          }}
-          MenuListProps={{
-            "aria-labelledby": "basic-button-business",
-          }}
+          MenuListProps={{ onMouseLeave: handleClose }}
         >
           <List sx={{ maxHeight: "100vh", width: "100vw" }}>
             <Box

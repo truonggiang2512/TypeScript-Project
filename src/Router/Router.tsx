@@ -11,7 +11,10 @@ import JobType from "../Page/JobType/JobType";
 import storage from "../Utils/storage";
 import Login from "../Page/Auth/Login/Login";
 import Register from "../Page/Auth/Register/Register";
+import { TOKEN } from "../Utils/config";
+import HomeAuth from "../Page/HomeAuth/HomeAuth";
 const isLogin = storage.get("isLogin");
+const token = storage.get(TOKEN);
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,14 +31,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <Home />,
+        element: token ? <HomeAuth /> : <Home />,
       },
       {
         path: "/admin",
         element: <Admin />,
       },
       {
-        path: "/detail",
+        path: "/detail/:jobDetailId",
         element: <Detail />,
       },
       {

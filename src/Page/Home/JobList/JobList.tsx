@@ -13,7 +13,6 @@ import {
   Typography,
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import PageviewIcon from "@mui/icons-material/Pageview";
 export default function Joblist() {
   var settings = {
     dots: false,
@@ -58,7 +57,7 @@ export default function Joblist() {
     ],
   };
   return (
-    <Container sx={{ bgcolor: "background.joblist", py: 12 }} maxWidth="xl">
+    <Container sx={{ bgcolor: "background.joblist", py: 3 }} maxWidth="xl">
       <Typography pl={3} pb={3} sx={{ fontWeight: "bold" }} variant="h4">
         Inspiring work made on Fiverr
       </Typography>

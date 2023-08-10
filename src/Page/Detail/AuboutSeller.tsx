@@ -1,14 +1,65 @@
 import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import StarIcon from "@mui/icons-material/Star";
+import { DetailModel } from "../../Services/redux/reducers/DetailReducer/detailReducer";
 import AvatarSeller from "./AvatarSeller";
+import StarIcon from "@mui/icons-material/Star";
 
-type Props = {};
+type Props = { arrDetail: DetailModel[] };
 
-function AuboutSeller({}: Props) {
+function AuboutSeller({ arrDetail }: Props) {
   return (
     <div>
-      <AvatarSeller />
+      {arrDetail?.map((item) => {
+        return (
+          <Box py={2}>
+            <Box sx={{ display: "flex", gap: 1.5 }}>
+              <Avatar
+                alt="Remy Sharp"
+                src={item?.avatar}
+                sx={{ width: 56, height: 56 }}
+              />
+              <Box>
+                <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                  <Typography variant="subtitle2">Docute</Typography>
+                  <Typography variant="body1">@docute_developer</Typography>
+                </Box>
+                <Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: 1,
+                      alignItems: "center",
+                      justifyContent: "left",
+                    }}
+                  >
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <StarIcon fontSize="small" />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 0.5,
+                        }}
+                      >
+                        <Typography variant="body2">
+                          {item?.congViec.saoCongViec}
+                        </Typography>
+                        <Typography>({item?.congViec.danhGia})</Typography>
+                      </Box>
+                    </Box>
+                    <Box>|</Box>
+                    <Box>
+                      <Typography variant="body1">
+                        {item?.id}Orders in Queue
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        );
+      })}
       <Box
         sx={{
           border: "1px solid ",
