@@ -2,16 +2,18 @@ import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 
-type Props = {};
+type Props = {
+  arrDetail: any;
+};
 
-function AvatarSeller({}: Props) {
+function AvatarSeller({ arrDetail }: Props) {
   return (
     <div>
       <Box py={2}>
         <Box sx={{ display: "flex", gap: 1.5 }}>
           <Avatar
             alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
+            src={arrDetail?.avatar}
             sx={{ width: 56, height: 56 }}
           />
           <Box>
@@ -37,13 +39,17 @@ function AvatarSeller({}: Props) {
                       gap: 0.5,
                     }}
                   >
-                    <Typography variant="body2">4.7</Typography>
-                    <Typography>(105)</Typography>
+                    <Typography variant="body2">
+                      {arrDetail?.congViec.saoCongViec}
+                    </Typography>
+                    <Typography>({arrDetail?.congViec.danhGia})</Typography>
                   </Box>
                 </Box>
                 <Box>|</Box>
                 <Box>
-                  <Typography variant="body1">10 Orders in Queue</Typography>
+                  <Typography variant="body1">
+                    {arrDetail?.id}Orders in Queue
+                  </Typography>
                 </Box>
               </Box>
             </Box>

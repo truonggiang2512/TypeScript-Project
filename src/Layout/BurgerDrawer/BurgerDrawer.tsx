@@ -5,20 +5,13 @@ import {
   ListItem,
   ListItemText,
   Divider,
-  Button,
   ListItemButton,
   ListItemIcon,
   Collapse,
 } from "@mui/material";
-import WorkSpace from "../Header/Menu/WorkSpace";
 import Resources from "../Header/Menu/Resources";
 import Support from "../Header/Menu/Support";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Graphic from "../Header/BoardBar/Graphics";
 import Programming from "../Header/BoardBar/Programming";
 import Marketing from "../Header/BoardBar/Maketing";
 import Video from "../Header/BoardBar/Video";
@@ -31,7 +24,6 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import ModeSelect from "../../Component/ModeSelect";
 import Login from "../../Page/Auth/Login/Login";
 import Register from "../../Page/Auth/Register/Register";
-// import Profile from "./Menu/Profile";
 interface BurgerDrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -61,11 +53,6 @@ const BurgerDrawer: React.FC<BurgerDrawerProps> = ({ isOpen, onClose }) => {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <Graphic />
-              </ListItemIcon>
-            </ListItem>
             <ListItem sx={{ pl: 4 }}>
               <ListItemIcon>
                 <Programming />

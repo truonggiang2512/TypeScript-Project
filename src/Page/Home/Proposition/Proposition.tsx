@@ -1,9 +1,6 @@
 import {
   Box,
   Card,
-  CardActionArea,
-  CardContent,
-  CardHeader,
   CardMedia,
   Container,
   Stack,

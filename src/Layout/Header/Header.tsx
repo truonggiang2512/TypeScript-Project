@@ -16,15 +16,6 @@ import WorkSpace from "./Menu/WorkSpace";
 import Resources from "./Menu/Resources";
 import Support from "./Menu/Support";
 import Graphic from "./BoardBar/Graphics";
-import Programming from "./BoardBar/Programming";
-import Marketing from "./BoardBar/Maketing";
-import Video from "./BoardBar/Video";
-import Writting from "./BoardBar/Writting";
-import Music from "./BoardBar/Music";
-import Business from "./BoardBar/Business";
-import Data from "./BoardBar/Data";
-import Photography from "./BoardBar/Photography";
-import Service from "./BoardBar/Sevices";
 import SearchIcon from "@mui/icons-material/Search";
 import BurgerDrawer from "../BurgerDrawer/BurgerDrawer";
 import Register from "../../Page/Auth/Register/Register";
@@ -32,11 +23,14 @@ import { useNavigate } from "react-router-dom";
 import Login from "../../Page/Auth/Login/Login";
 import storage from "../../Utils/storage";
 import { TOKEN } from "../../Utils/config";
+import { searchJobAsync } from "../../Services/redux/searchReducer/searchReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { DispatchType } from "../../Services/redux/configStore";
 export default function Header() {
   const token = storage.get(TOKEN);
+  const dispatch: DispatchType = useDispatch();
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [tokenLogin, setTokenLogin] = useState(token);
   const handleDrawerOpen = () => {
     setIsDrawerOpen(true);
   };
@@ -44,7 +38,14 @@ export default function Header() {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
-
+  const arrSearch = useSelector((state: any) => state.searchReducer.arrSearch);
+  const submitSearch = (event: any) => {
+    event.preventDefault();
+    let value = event.target.search.value;
+    const actionApiSearch = searchJobAsync(value);
+    dispatch(actionApiSearch);
+    navigate("/search");
+  };
   const isDisableLogin: any = () => {
     if (token) {
       return (
@@ -65,9 +66,7 @@ export default function Header() {
       );
     }
   };
-  useEffect(() => {
-    setTokenLogin(+1);
-  }, [tokenLogin]);
+  useEffect(() => {}, []);
   return (
     <Container maxWidth={false} disableGutters={true}>
       <Box
@@ -128,21 +127,26 @@ export default function Header() {
                   maxWidth: "100%",
                 }}
               >
-                <TextField
-                  type="search"
-                  fullWidth
-                  size="small"
-                  id="search"
-                  label="What service are you looking for?"
-                  variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                <form action="" onSubmit={submitSearch}>
+                  <TextField
+                    type="search"
+                    fullWidth
+                    size="small"
+                    name="search"
+                    id="search"
+                    label="What service are you looking for?"
+                    variant="outlined"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Button type="submit" sx={{ p: 0, m: 0 }}>
+                            <SearchIcon />
+                          </Button>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </form>
               </Box>
             </Box>
           </Box>
@@ -158,30 +162,6 @@ export default function Header() {
             <Resources />
             <WorkSpace />
             <ModeSelect />
-            <Button
-              variant="text"
-              onClick={() => {
-                navigate("/search");
-              }}
-            >
-              Search
-            </Button>
-            <Button
-              variant="text"
-              onClick={() => {
-                navigate("/jobtype");
-              }}
-            >
-              Job Type
-            </Button>
-            <Button
-              variant="text"
-              onClick={() => {
-                navigate("/detail");
-              }}
-            >
-              Detail
-            </Button>
             {isDisableLogin()}
           </Box>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
@@ -218,24 +198,14 @@ export default function Header() {
           px={4}
           py={0.3}
           sx={{
-            display: { md: "flex", xs: "none" },
+            display: { md: "block", xs: "none" },
             alignItems: "center",
             width: "100vw",
-            justifyContent: "space-between",
             border: 1,
             borderColor: "#212121",
           }}
         >
           <Graphic />
-          <Programming />
-          <Marketing />
-          <Video />
-          <Writting />
-          <Music />
-          <Business />
-          <Data />
-          <Photography />
-          <Service />
         </Box>
       </Box>
     </Container>

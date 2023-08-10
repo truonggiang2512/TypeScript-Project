@@ -1,9 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import { DetailModel } from "../../Services/redux/reducers/DetailReducer/detailReducer";
 
-type Props = {};
+type Props = { arrDetail: DetailModel[] };
 
-function GigDetail({}: Props) {
+function GigDetail({ arrDetail }: Props) {
   return (
     <div>
       <Box>
@@ -11,22 +12,16 @@ function GigDetail({}: Props) {
           About this gig
         </Typography>
         <Box py={2}>
-          <Typography sx={{ color: "primary.main" }} variant="subtitle1">
-            Welcome to my minimalist premium 3d business logos services on
-            Fiverr
-          </Typography>
-          <Box>
-            <Typography sx={{ color: "primary.main" }} variant="subtitle1">
-              If you are looking for a Professional and Minimalist logo for your
-              brand or company than this is the right spot.
-            </Typography>
-            <Typography sx={{ color: "primary.main" }} variant="subtitle1">
-              I am young and professional Graphic Designer and working in this
-              field for many years. You will happy at every stage of the
-              project. Every design will be distinctive which will represent
-              your company/business/brand.
-            </Typography>
-          </Box>
+          {arrDetail?.map((item) => {
+            return (
+              <Box>
+                <Typography sx={{ color: "primary.main" }} variant="subtitle1">
+                  {item.congViec.moTa}
+                </Typography>
+              </Box>
+            );
+          })}
+
           <Box py={2}>
             <Typography sx={{ fontSize: "20px" }} variant="subtitle2">
               My Services Includes.

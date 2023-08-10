@@ -40,7 +40,7 @@ export default function HomeServices() {
     ],
   };
   return (
-    <Container sx={{ paddingTop: 12 }} maxWidth="xl">
+    <Container sx={{ paddingTop: 3 }} maxWidth="xl">
       <Typography pl={3} pb={3} sx={{ fontWeight: "bold" }} variant="h4">
         Popular services
       </Typography>

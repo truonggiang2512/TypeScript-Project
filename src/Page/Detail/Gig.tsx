@@ -6,7 +6,11 @@ import ShareIcon from "@mui/icons-material/Share";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LoopIcon from "@mui/icons-material/Loop";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-type Props = {};
+import { DetailModel } from "../../Services/redux/reducers/DetailReducer/detailReducer";
+import { render } from "react-dom";
+type Props = {
+  arrDetail: DetailModel[];
+};
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -37,9 +41,8 @@ function a11yProps(index: number) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-function Gig({}: Props) {
+function Gig({ arrDetail }: Props) {
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -73,8 +76,7 @@ function Gig({}: Props) {
             <Box
               sx={{
                 borderBottom: 1,
-                display: "flex",
-                justifyContent: { md: "right", xs: "center" },
+                border: "1px solid ",
                 borderColor: "divider",
               }}
             >
@@ -84,158 +86,184 @@ function Gig({}: Props) {
                 aria-label="basic tabs example"
               >
                 <Tab
-                  sx={{ px: 5, borderRight: 1 }}
+                  sx={{ px: { md: 5, sm: 12, xs: 3.5 }, borderRight: 1 }}
                   label="Basic"
                   {...a11yProps(0)}
                 />
                 <Tab
-                  sx={{ px: 5, borderRight: 1 }}
+                  sx={{ px: { md: 5, sm: 12, xs: 3.5 }, borderRight: 1 }}
                   label="Standard"
                   {...a11yProps(1)}
                 />
-                <Tab sx={{ px: 5 }} label="Predium" {...a11yProps(2)} />
+                <Tab
+                  sx={{ px: { md: 5, sm: 12, xs: 3.5 } }}
+                  label="Predium"
+                  {...a11yProps(2)}
+                />
               </Tabs>
             </Box>
             <Box height="60vh">
               <CustomTabPanel value={value} index={0}>
-                <Box>
-                  <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Typography variant="subtitle2">Most Basic</Typography>
-                    <Typography variant="subtitle1">US$15</Typography>
-                  </Box>
-                  <Box py={3}>
-                    <Typography color="primary.main" variant="subtitle1">
-                      1 TEXT logo Concept only+ PNG, JPEG + No object or drawing
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: 2 }}>
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                      <AccessTimeIcon />
-                      <Typography variant="body2">2 Days Delivery</Typography>
+                {arrDetail?.map((item) => {
+                  return (
+                    <Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography variant="subtitle2">Most Basic</Typography>
+                        <Typography variant="subtitle1">
+                          US${item.congViec.giaTien}
+                        </Typography>
+                      </Box>
+                      <Box py={3}>
+                        <Typography color="primary.main" variant="subtitle1">
+                          1 TEXT logo Concept only+ PNG, JPEG + No object or
+                          drawing
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: "flex", gap: 2 }}>
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                          <AccessTimeIcon />
+                          <Typography variant="body2">
+                            2 Days Delivery
+                          </Typography>
+                        </Box>
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                          <LoopIcon />
+                          <Typography variant="body2">
+                            2 Days Delivery
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box>
+                        <li>{item.congViec.moTaNgan}</li>
+                      </Box>
+                      <Box pt={3}>
+                        <Button
+                          sx={{ width: "100%" }}
+                          endIcon={<ArrowForwardIcon />}
+                          variant="contained"
+                        >
+                          Continute (${item.congViec.giaTien})
+                        </Button>
+                      </Box>
+                      <Box pt={2} sx={{ textAlign: "center" }}>
+                        <Button variant="text">Compare packages</Button>
+                      </Box>
                     </Box>
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                      <LoopIcon />
-                      <Typography variant="body2">2 Days Delivery</Typography>
-                    </Box>
-                  </Box>
-                  <Box>
-                    <ul>
-                      <li>docute</li>
-                      <li>dovippro</li>
-                      <li>doiuHaTram</li>
-                      <li>TruongDo</li>
-                      <li>Hi</li>
-                    </ul>
-                  </Box>
-                  <Box pt={3}>
-                    <Button
-                      sx={{ width: "100%" }}
-                      endIcon={<ArrowForwardIcon />}
-                      variant="contained"
-                    >
-                      Continute
-                    </Button>
-                  </Box>
-                  <Box pt={2} sx={{ textAlign: "center" }}>
-                    <Button variant="text">Compare packages</Button>
-                  </Box>
-                </Box>
+                  );
+                })}
               </CustomTabPanel>
               <CustomTabPanel value={value} index={1}>
-                <Box>
-                  <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Typography variant="subtitle2">Recommemded</Typography>
-                    <Typography variant="subtitle1">US$30</Typography>
-                  </Box>
-                  <Box py={3}>
-                    <Typography color="primary.main" variant="subtitle1">
-                      2 Proper Logo Concepts + JPG, Transparent PNG, and Source
-                      ai files for Chosen Option
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: 2 }}>
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                      <AccessTimeIcon />
-                      <Typography variant="body2">2 Days Delivery</Typography>
+                {arrDetail?.map((item) => {
+                  return (
+                    <Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography variant="subtitle2">Most Basic</Typography>
+                        <Typography variant="subtitle1">
+                          US${item.congViec.giaTien * 1.5}
+                        </Typography>
+                      </Box>
+                      <Box py={3}>
+                        <Typography color="primary.main" variant="subtitle1">
+                          1 TEXT logo Concept only+ PNG, JPEG + No object or
+                          drawing
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: "flex", gap: 2 }}>
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                          <AccessTimeIcon />
+                          <Typography variant="body2">
+                            2 Days Delivery
+                          </Typography>
+                        </Box>
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                          <LoopIcon />
+                          <Typography variant="body2">
+                            2 Days Delivery
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box>
+                        <li>{item.congViec.moTaNgan}</li>
+                      </Box>
+                      <Box pt={3}>
+                        <Button
+                          sx={{ width: "100%" }}
+                          endIcon={<ArrowForwardIcon />}
+                          variant="contained"
+                        >
+                          Continute (${item.congViec.giaTien * 1.5})
+                        </Button>
+                      </Box>
+                      <Box pt={2} sx={{ textAlign: "center" }}>
+                        <Button variant="text">Compare packages</Button>
+                      </Box>
                     </Box>
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                      <LoopIcon />
-                      <Typography variant="body2">2 Days Delivery</Typography>
-                    </Box>
-                  </Box>
-                  <Box>
-                    <ul>
-                      <li>dododo</li>
-                      <li>Truong Giang 123</li>
-                      <li>Do vip 456</li>
-                      <li>Hi</li>
-                      <li>Cec</li>
-                    </ul>
-                  </Box>
-                  <Box pt={3}>
-                    <Button
-                      sx={{ width: "100%" }}
-                      endIcon={<ArrowForwardIcon />}
-                      variant="contained"
-                    >
-                      Continute
-                    </Button>
-                  </Box>
-                  <Box pt={2} sx={{ textAlign: "center" }}>
-                    <Button variant="text">Compare packages</Button>
-                  </Box>
-                </Box>
+                  );
+                })}
               </CustomTabPanel>
               <CustomTabPanel value={value} index={2}>
-                <Box>
-                  <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Typography variant="subtitle2">VIP</Typography>
-                    <Typography variant="subtitle1">US$50</Typography>
-                  </Box>
-                  <Box py={3}>
-                    <Typography color="primary.main" variant="subtitle1">
-                      3 Detailed Premium Logo Concepts, All files, Social Media
-                      Kit & VIP Priority support
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: 2 }}>
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                      <AccessTimeIcon />
-                      <Typography variant="body2">2 Days Delivery</Typography>
+                {arrDetail?.map((item) => {
+                  return (
+                    <Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography variant="subtitle2">Most Basic</Typography>
+                        <Typography variant="subtitle1">
+                          US${item.congViec.giaTien * 2}
+                        </Typography>
+                      </Box>
+                      <Box py={3}>
+                        <Typography color="primary.main" variant="subtitle1">
+                          1 TEXT logo Concept only+ PNG, JPEG + No object or
+                          drawing
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: "flex", gap: 2 }}>
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                          <AccessTimeIcon />
+                          <Typography variant="body2">
+                            2 Days Delivery
+                          </Typography>
+                        </Box>
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                          <LoopIcon />
+                          <Typography variant="body2">
+                            2 Days Delivery
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box>
+                        <li>{item.congViec.moTaNgan}</li>
+                      </Box>
+                      <Box pt={3}>
+                        <Button
+                          sx={{ width: "100%" }}
+                          endIcon={<ArrowForwardIcon />}
+                          variant="contained"
+                        >
+                          Continute (${item.congViec.giaTien * 2})
+                        </Button>
+                      </Box>
+                      <Box pt={2} sx={{ textAlign: "center" }}>
+                        <Button variant="text">Compare packages</Button>
+                      </Box>
                     </Box>
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                      <LoopIcon />
-                      <Typography variant="body2">2 Days Delivery</Typography>
-                    </Box>
-                  </Box>
-                  <Box>
-                    <ul>
-                      <li>docute</li>
-                      <li>dovippro</li>
-                      <li>doiuHaTram</li>
-                      <li>TruongDo</li>
-                      <li>Hi</li>
-                    </ul>
-                  </Box>
-                  <Box pt={3}>
-                    <Button
-                      sx={{ width: "100%" }}
-                      endIcon={<ArrowForwardIcon />}
-                      variant="contained"
-                    >
-                      Continute
-                    </Button>
-                  </Box>
-                  <Box pt={2} sx={{ textAlign: "center" }}>
-                    <Button variant="text">Compare packages</Button>
-                  </Box>
-                </Box>
+                  );
+                })}
               </CustomTabPanel>
             </Box>
           </Box>

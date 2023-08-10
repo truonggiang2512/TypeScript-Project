@@ -1,0 +1,47 @@
+.categories-content {
+  /* the parent */
+  .slick-slider {
+    .slick-arrow {
+      background-color: #fff;
+      border: 0;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+      font-size: 16px;
+      height: 48px;
+      line-height: 100%;
+      margin-top: -15px;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      width: 48px;
+      z-index: 4;
+    }
+    .slick-arrow::after {
+      background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/arrows.c651879.svg)
+        no-repeat;
+      background-size: 16px 64px;
+      content: "";
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 17px 17px 14px 17px;
+    }
+
+    .slick-arrow::before {
+      content: "" !important;
+    }
+    .slick-arrow.slick-next::after {
+      background-position: 0 -48px;
+    }
+    .slick-next {
+      border-radius: 30px;
+      right: -8px;
+    }
+    .slick-prev {
+      border-radius: 30px;
+      left: -8px;
+    }
+  }
+}
