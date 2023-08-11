@@ -11,19 +11,28 @@ import HireItem from "./HireItem";
 import storage from "../../Utils/storage";
 import { USER_LOGIN } from "../../Utils/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfileAsync } from "../../Services/redux/reducers/ProfileReducer/profileReducer";
+import {
+  getHireAsync,
+  getProfileAsync,
+} from "../../Services/redux/reducers/ProfileReducer/profileReducer";
+import { DispatchType, RootState } from "../../Services/redux/configStore";
 
 type Props = {};
 
 const Profile = (props: Props) => {
-  const dispatch = useDispatch();
-  const idUser = storage.get(USER_LOGIN);
-  const userProfile: any = useSelector(
-    (state: any) => state.profileReducer.arrProfile
+  const arrHire = useSelector(
+    (state: RootState) => state.profileReducer.arrHire
   );
+  const userProfile: any = useSelector(
+    (state: RootState) => state.profileReducer.arrProfile
+  );
+  const dispatch: DispatchType = useDispatch();
+  const idUser = storage.get(USER_LOGIN);
   useEffect(() => {
-    const actionProfileApi: any = getProfileAsync(idUser.user.id);
+    const actionProfileApi = getProfileAsync(idUser.user.id);
     dispatch(actionProfileApi);
+    const actionAPI = getHireAsync();
+    dispatch(actionAPI);
   }, []);
   return (
     <Container
@@ -217,27 +226,13 @@ const Profile = (props: Props) => {
                 </Box>
               </Box>
             </Box>
-            <Box mt={4}>
-              <HireItem />
-            </Box>
-            <Box mt={4}>
-              <HireItem />
-            </Box>
-            <Box mt={4}>
-              <HireItem />
-            </Box>
-            <Box mt={4}>
-              <HireItem />
-            </Box>
-            <Box mt={4}>
-              <HireItem />
-            </Box>
-            <Box mt={4}>
-              <HireItem />
-            </Box>
-            <Box mt={4}>
-              <HireItem />
-            </Box>
+            {arrHire.map((item) => {
+              return (
+                <Box mt={4}>
+                  <HireItem HireDetail={item} />
+                </Box>
+              );
+            })}
           </Box>
         </Box>
       </Box>

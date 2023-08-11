@@ -7,10 +7,15 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LoopIcon from "@mui/icons-material/Loop";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DetailModel } from "../../Services/redux/reducers/DetailReducer/detailReducer";
-import { render } from "react-dom";
+import storage from "../../Utils/storage";
+import { USER_LOGIN } from "../../Utils/constant";
+import { DispatchType } from "../../Services/redux/configStore";
+import { useDispatch } from "react-redux";
+import { hireAsync } from "../../Services/redux/reducers/HireJobReducer/hireJobReducer";
 type Props = {
   arrDetail: DetailModel[];
 };
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -46,6 +51,9 @@ function Gig({ arrDetail }: Props) {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  let date = new Date().toLocaleDateString();
+  const dispatch: DispatchType = useDispatch();
+  const user = storage.get(USER_LOGIN);
 
   return (
     <Box
@@ -146,6 +154,16 @@ function Gig({ arrDetail }: Props) {
                           sx={{ width: "100%" }}
                           endIcon={<ArrowForwardIcon />}
                           variant="contained"
+                          onClick={() => {
+                            const actionAPI = hireAsync({
+                              id: 0,
+                              maCongViec: item?.id,
+                              maNguoiThue: user.user.id,
+                              ngayThue: date,
+                              hoanThanh: true,
+                            });
+                            dispatch(actionAPI);
+                          }}
                         >
                           Continute (${item.congViec.giaTien})
                         </Button>
@@ -200,6 +218,16 @@ function Gig({ arrDetail }: Props) {
                           sx={{ width: "100%" }}
                           endIcon={<ArrowForwardIcon />}
                           variant="contained"
+                          onClick={() => {
+                            const actionAPI = hireAsync({
+                              id: 0,
+                              maCongViec: item?.id,
+                              maNguoiThue: user.user.id,
+                              ngayThue: date,
+                              hoanThanh: true,
+                            });
+                            dispatch(actionAPI);
+                          }}
                         >
                           Continute (${item.congViec.giaTien * 1.5})
                         </Button>
@@ -254,6 +282,16 @@ function Gig({ arrDetail }: Props) {
                           sx={{ width: "100%" }}
                           endIcon={<ArrowForwardIcon />}
                           variant="contained"
+                          onClick={() => {
+                            const actionAPI = hireAsync({
+                              id: 0,
+                              maCongViec: item?.id,
+                              maNguoiThue: user.user.id,
+                              ngayThue: date,
+                              hoanThanh: true,
+                            });
+                            dispatch(actionAPI);
+                          }}
                         >
                           Continute (${item.congViec.giaTien * 2})
                         </Button>

@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Stack,
-  SvgIcon,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import React from "react";
 import VerifiedIcon from "@mui/icons-material/Verified";
 function Solutions() {

@@ -16,12 +16,34 @@ export interface ProfileModel {
   certification: string[] | null;
   bookingJob: string[];
 }
+export interface GetHireModel {
+  id: number;
+  ngayThue: string;
+  hoanThanh: boolean;
+  congViec: CongViec;
+}
+
+export interface CongViec {
+  id: number;
+  tenCongViec: string;
+  danhGia: number;
+  giaTien: number;
+  nguoiTao: number;
+  hinhAnh: string;
+  moTa: string;
+  maChiTietLoaiCongViec: number;
+  moTaNgan: string;
+  saoCongViec: number;
+}
+
 export interface ProfileState {
   arrProfile: ProfileModel[];
+  arrHire: GetHireModel[];
 }
 
 const initialState: ProfileState = {
   arrProfile: [],
+  arrHire: [],
 };
 
 const profileReducer = createSlice({
@@ -43,6 +65,29 @@ const profileReducer = createSlice({
       .addCase(
         getProfileAsync.rejected,
         (state: ProfileState, action: any) => {}
+      )
+      .addCase(getHireAsync.pending, (state: ProfileState, action: any) => {})
+      .addCase(
+        getHireAsync.fulfilled,
+        (state: ProfileState, action: PayloadAction<GetHireModel[]>) => {
+          state.arrHire = action.payload;
+        }
+      )
+      .addCase(getHireAsync.rejected, (state: ProfileState, action: any) => {})
+      .addCase(
+        deleteJobAsyncAPI.pending,
+        (state: ProfileState, action: any) => {}
+      )
+      .addCase(
+        deleteJobAsyncAPI.fulfilled,
+        (state: ProfileState, action: PayloadAction<GetHireModel[]>) => {
+          alert("Xoa Thanh Cong");
+          location.reload();
+        }
+      )
+      .addCase(
+        deleteJobAsyncAPI.rejected,
+        (state: ProfileState, action: any) => {}
       );
   },
 });
@@ -63,6 +108,34 @@ export const getProfileAsync = createAsyncThunk(
     } catch (error) {
       console.error("Error during fetching jobs:", error);
       throw error; // Ném lỗi để createAsyncThunk xử lý
+    }
+  }
+);
+
+//-----------------getHireAPI--------------
+export const getHireAsync = createAsyncThunk("getHireAsync", async () => {
+  //call api
+  try {
+    // Call API
+    const res = await http.get("thue-cong-viec/lay-danh-sach-da-thue");
+    return res.data.content || []; // Trả về mảng, hoặc mảng rỗng nếu không có dữ liệu
+  } catch (error) {
+    console.error("Error during fetching jobs:", error);
+    throw error; // Ném lỗi để createAsyncThunk xử lý
+  }
+});
+
+//---------- deleteJobAsync-----------
+export const deleteJobAsyncAPI = createAsyncThunk(
+  "deleteJobAsyncAPI",
+  async (id: any) => {
+    try {
+      const res = await http.delete(`thue-cong-viec/${id}`);
+      console.log(res.data.content);
+      return res.data.content;
+    } catch (error) {
+      console.error("Error during fetching jobs:", error);
+      throw error;
     }
   }
 );
