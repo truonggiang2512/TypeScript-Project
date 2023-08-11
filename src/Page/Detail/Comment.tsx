@@ -12,6 +12,7 @@ function Comment({}: Props) {
   const arrComment = useSelector(
     (state: RootState) => state.commentReducer.arrComment
   );
+  console.log(arrComment, "comment");
   const params = useParams();
   const dispatch: DispatchType = useDispatch();
   useEffect(() => {

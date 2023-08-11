@@ -19,7 +19,6 @@ export default function Detail() {
     (state: RootState) => state.detailReducer.arrDetail
   );
 
-  console.log(arrDetail, "Detail Page");
   const params = useParams();
   const dispatch: DispatchType = useDispatch();
   useEffect(() => {
@@ -90,10 +89,12 @@ export default function Detail() {
             <GigDetail arrDetail={arrDetail} />
             <AuboutSeller arrDetail={arrDetail} />
             <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <InputCmt />
+            <Box py={3}>
+              <Box pb={2}>
+                <Typography variant="subtitle2">Add a comment</Typography>
+              </Box>
+              <InputCmt arrDetail={arrDetail} />
+            </Box>
           </Box>
         </Box>
         <Box

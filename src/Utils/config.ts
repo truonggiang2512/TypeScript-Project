@@ -33,8 +33,8 @@ httpNonAuth.interceptors.request.use(
 http.interceptors.request.use(
   (config: any) => {
     config.headers = { ...config.headers };
-    let token = storage.get(USER_LOGIN)?.accessToken;
-    config.headers.Authorization = `Bearer ${token}`;
+    let token = storage.get(TOKEN);
+    config.headers.token = `${token}`;
     config.headers.tokenCybersoft = `${TOKEN_CYBERSOFT}`;
     return config;
   },

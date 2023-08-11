@@ -12,11 +12,9 @@ import FormLabel from "@mui/material/FormLabel";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch } from "react-redux";
 import { DispatchType } from "../../../Services/redux/configStore";
 import { useFormik } from "formik";
-import dayjs from "dayjs";
 import * as yup from "yup";
 import "dayjs/locale/en-gb";
 import { signupAsyncAction } from "../../../Services/redux/reducers/userReducer";
@@ -76,7 +74,6 @@ export default function Register({}: Props) {
       phone: yup.number().required("phone cannot be blank"),
     }),
     onSubmit: (values: UserSignupFrm) => {
-      console.log(values);
       const actionApi = signupAsyncAction(values);
       dispatch(actionApi);
     },

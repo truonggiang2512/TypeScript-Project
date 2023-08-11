@@ -49,7 +49,6 @@ export default function Login({}: Props) {
       password: yup.string().required("password cannot be blank"),
     }),
     onSubmit: (values: UserLoginFrm) => {
-      console.log(values);
       const actionApi = loginAsyncAction(values);
       dispatch(actionApi);
 
