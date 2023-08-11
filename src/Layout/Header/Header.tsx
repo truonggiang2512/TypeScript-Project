@@ -3,7 +3,7 @@ import { Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import ModeSelect from "../../Component/ModeSelect";
 import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
-import { ReactComponent as fiverrLogo } from "../../assets/favicon/fiverr_icon_236762.svg";
+// import { ReactComponent as fiverrLogo } from "../../assets/favicon/fiverr_icon_236762.svg";
 import {
   Button,
   IconButton,
@@ -101,7 +101,7 @@ export default function Header() {
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
               <SvgIcon
-                component={fiverrLogo}
+                // component={fiverrLogo}
                 inheritViewBox
                 fontSize="small"
                 sx={{ color: "primary.main" }}
