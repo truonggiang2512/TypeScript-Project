@@ -58,7 +58,7 @@ export default searchReducer.reducer;
 //------------------asyncApi------------------
 export const searchJobAsync = createAsyncThunk(
   "searchJobAsync",
-  async (tenCongViec) => {
+  async (tenCongViec: string) => {
     // call api
     try {
       const res = await http.get(
