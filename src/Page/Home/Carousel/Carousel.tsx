@@ -7,8 +7,21 @@ import {
 } from "@mui/material";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import { searchJobAsync } from "../../../Services/redux/searchReducer/searchReducer";
+import { DispatchType } from "../../../Services/redux/configStore";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Carousel() {
+  const dispatch: DispatchType = useDispatch();
+  const navigate = useNavigate();
+  const submitSearch = (event: any) => {
+    event.preventDefault();
+    let value = event.target.search.value;
+    const actionApiSearch = searchJobAsync(value);
+    dispatch(actionApiSearch);
+    navigate("/search");
+  };
   return (
     <Box
       sx={{
@@ -45,26 +58,30 @@ export default function Carousel() {
               </Typography>
             </Box>
             <Box py={3} width="100%">
-              <TextField
-                fullWidth
-                type="search"
-                size="small"
-                id="search1"
-                label="What service are you looking for?"
-                variant="filled"
-                color="secondary"
-                InputProps={{
-                  style: {
-                    background: "white",
-                    color: "#000",
-                  },
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <SearchIcon sx={{ color: "black" }} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              <form action="" onSubmit={submitSearch}>
+                <TextField
+                  fullWidth
+                  type="search"
+                  size="small"
+                  id="search"
+                  label="What service are you looking for?"
+                  variant="filled"
+                  color="secondary"
+                  InputProps={{
+                    style: {
+                      background: "white",
+                      color: "#000",
+                    },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Button type="submit" sx={{ p: 0, m: 0 }}>
+                          <SearchIcon sx={{ color: "black" }} />
+                        </Button>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </form>
             </Box>
           </Box>
           <Box

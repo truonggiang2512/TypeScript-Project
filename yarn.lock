@@ -667,6 +667,28 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
+"@mui/utils@^5.14.3":
+  version "5.14.5"
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.14.5.tgz#98fb6060610b793a8478e70ffe5e4ed5bd922dba"
+  integrity sha512-6Hzw63VR9C5xYv+CbjndoRLU6Gntal8rJ5W+GUzkyHrGWIyYPWZPa6AevnyGioySNETATe1H9oXS8f/7qgIHJA==
+  dependencies:
+    "@babel/runtime" "^7.22.6"
+    "@types/prop-types" "^15.7.5"
+    "@types/react-is" "^18.2.1"
+    prop-types "^15.8.1"
+    react-is "^18.2.0"
+
+"@mui/x-data-grid@^6.11.1":
+  version "6.11.1"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.11.1.tgz#60b172a50acd9ecec0a264d0604a34422ce3f80c"
+  integrity sha512-qFyuf6R/JOG46Y62scwH0C7s+xVqfRFU/gv4rUWS9m+EYsabAXTx/g+Mq2t+ZGdaaGZlrpKDavr2PwitbpTMaw==
+  dependencies:
+    "@babel/runtime" "^7.22.6"
+    "@mui/utils" "^5.14.3"
+    clsx "^2.0.0"
+    prop-types "^15.8.1"
+    reselect "^4.1.8"
+
 "@mui/x-date-pickers@^6.10.2":
   version "6.10.2"
   resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-6.10.2.tgz#af9734994b6415e19f2f01c34b64f9772b05cc21"
@@ -1293,6 +1315,11 @@ clsx@^1.0.4, clsx@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
   integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
+
+clsx@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.0.0.tgz#12658f3fd98fafe62075595a5c30e43d18f3d00b"
+  integrity sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==
 
 color-convert@^1.9.0:
   version "1.9.3"

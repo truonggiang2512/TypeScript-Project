@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import adminReducer from "./reducers/AdminReducer/adminReducer";
 import commentReducer from "./reducers/CommentReducer/commentReducer";
 import congViecReducer from "./reducers/congViecReducer";
 import detailReducer from "./reducers/DetailReducer/detailReducer";
@@ -22,6 +23,7 @@ const store = configureStore({
     detailReducer: detailReducer,
     commentReducer: commentReducer,
     hireJobReducer: hireJobReducer,
+    adminReducer: adminReducer,
   },
 });
 

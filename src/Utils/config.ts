@@ -9,7 +9,6 @@ const history = createBrowserHistory();
 export const DOMAIN = "https://fiverrnew.cybersoft.edu.vn/api/";
 export const TOKEN = "accessToken";
 export const TOKEN_CYBERSOFT = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzQiLCJIZXRIYW5TdHJpbmciOiIyMi8wMy8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MTEwNjU2MDAwMDAiLCJuYmYiOjE2OTMwNjkyMDAsImV4cCI6MTcxMTIxMzIwMH0.I9k3be3bbxp64NISKJ-A3aR6mEhF4QfCGakizTqBON8`;
-
 export const http = axios.create({
   baseURL: DOMAIN,
   timeout: 30000,

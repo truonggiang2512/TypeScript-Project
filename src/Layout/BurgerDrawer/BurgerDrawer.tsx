@@ -36,7 +36,12 @@ const BurgerDrawer: React.FC<BurgerDrawerProps> = ({ isOpen, onClose }) => {
     setOpen(!open);
   };
   return (
-    <Drawer anchor="left" open={isOpen} onClose={onClose}>
+    <Drawer
+      sx={{ zIndex: 10000 }}
+      anchor="left"
+      open={isOpen}
+      onClose={onClose}
+    >
       <List sx={{ width: 250, backgroundColor: "background.paper" }}>
         <ListItem>
           <Register />

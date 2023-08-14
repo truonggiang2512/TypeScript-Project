@@ -1,14 +1,18 @@
 import { Box, Typography, Button } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../Services/redux/configStore";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { DispatchType, RootState } from "../../Services/redux/configStore";
 import { DsNhomChiTietLoai } from "../../Services/redux/reducers/JobTypeReducer/jobTypeReducer";
+import { searchJobAsync } from "../../Services/redux/searchReducer/searchReducer";
 
 type Props = {
   dsNhom: DsNhomChiTietLoai;
 };
 
 function ItemJobType({ dsNhom }: Props) {
+  const dispatch: DispatchType = useDispatch();
+  const navigate = useNavigate();
   return (
     <Box>
       <Box sx={{}}>
@@ -25,6 +29,11 @@ function ItemJobType({ dsNhom }: Props) {
               <Button
                 sx={{ fontSize: "18px", fontWeight: "400", pl: 0 }}
                 variant="text"
+                onClick={() => {
+                  const actionAPI = searchJobAsync(item.tenChiTiet);
+                  dispatch(actionAPI);
+                  navigate("/search");
+                }}
               >
                 {item.tenChiTiet}
               </Button>

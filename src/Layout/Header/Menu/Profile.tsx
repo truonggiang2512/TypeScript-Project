@@ -12,6 +12,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Logout, PersonAdd, Settings } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import storage from "../../../Utils/storage";
+import { TOKEN } from "../../../Utils/config";
 function Profile() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -21,6 +24,7 @@ function Profile() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const navigate = useNavigate();
 
   return (
     <Box>
@@ -40,20 +44,52 @@ function Profile() {
       </Tooltip>
 
       <Menu
-        id="basic-menu-Profile"
         anchorEl={anchorEl}
+        id="account-profile"
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button-resources",
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            mt: 1.5,
+            "& .MuiAvatar-root": {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            "&:before": {
+              content: '""',
+              display: "block",
+              position: "absolute",
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
+              zIndex: 0,
+            },
+          },
         }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar sx={{ width: 29, height: 29, mr: 2 }} /> Profile
+          <Typography
+            variant="subtitle2"
+            sx={{ p: 0, width: "100%", textAlign: "left" }}
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Profile
+          </Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar sx={{ width: 29, height: 29, mr: 2 }} /> My account
-        </MenuItem>
+
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
@@ -68,10 +104,15 @@ function Profile() {
           Settings
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
+          <Typography
+            variant="subtitle1"
+            onClick={() => {
+              storage.clear(TOKEN);
+              window.location.pathname = "/home";
+            }}
+          >
+            Log out
+          </Typography>
         </MenuItem>
       </Menu>
     </Box>
