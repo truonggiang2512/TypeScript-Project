@@ -38,10 +38,16 @@ export interface HireJob {
   hoanThanh: boolean;
 }
 export interface ContentState {
-  arrContent: User[] | Job[] | JobType[] | HireJob[];
+  arrUser: User[];
+  arrJob: Job[];
+  arrJobType: JobType[];
+  arrHire: HireJob[];
 }
 const initialState = {
-  arrContent: [],
+  arrUser: [],
+  arrJob: [],
+  arrJobType: [],
+  arrHire: [],
 };
 
 const adminReducer = createSlice({
@@ -55,7 +61,7 @@ const adminReducer = createSlice({
       .addCase(
         getUserAsync.fulfilled,
         (state: ContentState, action: PayloadAction<User[]>) => {
-          state.arrContent = action.payload;
+          state.arrUser = action.payload;
         }
       )
       .addCase(getUserAsync.rejected, (state: ContentState, action: any) => {})
@@ -64,7 +70,7 @@ const adminReducer = createSlice({
       .addCase(
         getJobAsync.fulfilled,
         (state: ContentState, action: PayloadAction<Job[]>) => {
-          state.arrContent = action.payload;
+          state.arrJob = action.payload;
         }
       )
       .addCase(getJobAsync.rejected, (state: ContentState, action: any) => {})
@@ -76,7 +82,7 @@ const adminReducer = createSlice({
       .addCase(
         getJobTypeAsync.fulfilled,
         (state: ContentState, action: PayloadAction<JobType[]>) => {
-          state.arrContent = action.payload;
+          state.arrJobType = action.payload;
         }
       )
       .addCase(
@@ -91,7 +97,7 @@ const adminReducer = createSlice({
       .addCase(
         getJobHireAsync.fulfilled,
         (state: ContentState, action: PayloadAction<HireJob[]>) => {
-          state.arrContent = action.payload;
+          state.arrHire = action.payload;
         }
       )
       .addCase(
@@ -120,7 +126,6 @@ export const getUserAsync = createAsyncThunk("getUserAsync", async () => {
 export const getJobAsync = createAsyncThunk("getJobAsync", async () => {
   try {
     const res = await http.get("cong-viec");
-    console.log(res.data.content);
     return res.data.content;
   } catch (error) {
     throw error;
@@ -131,7 +136,6 @@ export const getJobAsync = createAsyncThunk("getJobAsync", async () => {
 export const getJobTypeAsync = createAsyncThunk("getJobTypeAsync", async () => {
   try {
     const res = await http.get("loai-cong-viec");
-    console.log(res.data.content);
     return res.data.content;
   } catch (error) {
     throw error;
@@ -141,7 +145,6 @@ export const getJobTypeAsync = createAsyncThunk("getJobTypeAsync", async () => {
 export const getJobHireAsync = createAsyncThunk("getJobHireAsync", async () => {
   try {
     const res = await http.get("thue-cong-viec");
-    console.log(res.data.content);
     return res.data.content;
   } catch (error) {
     throw error;

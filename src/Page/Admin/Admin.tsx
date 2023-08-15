@@ -13,20 +13,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import InputLabel from "@mui/material/InputLabel";
-import SearchIcon from "@mui/icons-material/Search";
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  InputAdornment,
-  OutlinedInput,
-} from "@mui/material";
-import Table from "./Table";
+import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Services/redux/configStore";
 import {
@@ -35,6 +23,11 @@ import {
   getJobTypeAsync,
   getUserAsync,
 } from "../../Services/redux/reducers/AdminReducer/adminReducer";
+import TableUser from "./Table/Table";
+import TableJob from "./Table/TableJob";
+import TableJobType from "./Table/TableJobType";
+import TableHire from "./Table/TableHire";
+import storage from "../../Utils/storage";
 type Props = {};
 const drawerWidth = 240;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -64,13 +57,10 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 function Admin({}: Props) {
-  const arrContent = useSelector(
-    (state: RootState) => state.adminReducer.arrContent
-  );
   const dispatch: DispatchType = useDispatch();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-
+  const [table, setTable] = useState(<TableUser />);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -78,16 +68,34 @@ function Admin({}: Props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const showUser = () => {
+    // const actionUserAPI = getUserAsync();
+    // dispatch(actionUserAPI);
+    setTable(<TableUser />);
+  };
+  const showJob = () => {
+    const actionJobAPI = getJobAsync();
+    dispatch(actionJobAPI);
+    setTable(<TableJob />);
+  };
+  const showJobType = () => {
+    const actionJobTypeAPI = getJobTypeAsync();
+    dispatch(actionJobTypeAPI);
+    setTable(<TableJobType />);
+  };
+  const showHire = () => {
+    const actionHireAPI = getJobHireAsync();
+    dispatch(actionHireAPI);
+    setTable(<TableHire />);
+  };
+
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 800) {
-        // Adjust the breakpoint as needed
-        setOpen(false); // Close the drawer on small screens
+      if (window.innerWidth <= 1000) {
+        setOpen(false);
       }
     };
-
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -128,8 +136,7 @@ function Admin({}: Props) {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    const actionUserAPI = getUserAsync();
-                    dispatch(actionUserAPI);
+                    showUser();
                   }}
                 >
                   <ListItemText primary="Quản lý người dùng" />
@@ -138,8 +145,7 @@ function Admin({}: Props) {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    const actionJobAPI = getJobAsync();
-                    dispatch(actionJobAPI);
+                    showJob();
                   }}
                 >
                   <ListItemText primary="Quản lý công việc" />
@@ -148,8 +154,7 @@ function Admin({}: Props) {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    const actionJobTypeAPI = getJobTypeAsync();
-                    dispatch(actionJobTypeAPI);
+                    showJobType();
                   }}
                 >
                   <ListItemText primary="Quản lý loại công việc" />
@@ -158,8 +163,7 @@ function Admin({}: Props) {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    const actionJobHireTypeAPI = getJobHireAsync();
-                    dispatch(actionJobHireTypeAPI);
+                    showHire();
                   }}
                 >
                   <ListItemText primary="Quản lý dịch vụ" />
@@ -202,9 +206,7 @@ function Admin({}: Props) {
           <Box>
             <Button variant="text">Them Quan Tri Vien</Button>
           </Box>
-          <Box py={4}>
-            <Table arrContent={arrContent} />
-          </Box>
+          <Box py={4}>{table}</Box>
         </Box>
       </Main>
     </Box>
