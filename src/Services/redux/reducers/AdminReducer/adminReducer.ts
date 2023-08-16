@@ -217,3 +217,33 @@ export const deleteJobHireAsync = createAsyncThunk(
     }
   }
 );
+
+//-----------------UPDATE----------------
+export const updateUserAsync = createAsyncThunk(
+  "updateUserAsync",
+  async (model: User, { dispatch }) => {
+    try {
+      const res = await http.put(`users/${model.id}`, model);
+      if (res.status === 200) {
+        await dispatch(getUserAsync());
+        alert("Update successful");
+      }
+    } catch (error) {}
+  }
+);
+//----------------updateJobHireAsync---------------
+export const updateJobHireAsync = createAsyncThunk(
+  "deleteJobHireAsync",
+  async (model: HireJob, { dispatch }) => {
+    if (window.confirm("Do you want to remove?")) {
+      const res = await http.put(`thue-cong-viec/${model.id}`, model);
+
+      if (res.status === 200) {
+        await dispatch(getJobHireAsync());
+        alert("Update successful");
+      } else {
+        return;
+      }
+    }
+  }
+);

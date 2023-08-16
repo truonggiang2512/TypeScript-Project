@@ -82,7 +82,6 @@ const profileReducer = createSlice({
         deleteJobAsyncAPI.fulfilled,
         (state: ProfileState, action: PayloadAction<GetHireModel[]>) => {
           alert("Xoa Thanh Cong");
-          location.reload();
         }
       )
       .addCase(
@@ -128,14 +127,15 @@ export const getHireAsync = createAsyncThunk("getHireAsync", async () => {
 //---------- deleteJobAsync-----------
 export const deleteJobAsyncAPI = createAsyncThunk(
   "deleteJobAsyncAPI",
-  async (id: any) => {
-    try {
+  async (id: number, { dispatch }) => {
+    if (window.confirm("Do you want to remove?")) {
       const res = await http.delete(`thue-cong-viec/${id}`);
-      console.log(res.data.content);
-      return res.data.content;
-    } catch (error) {
-      console.error("Error during fetching jobs:", error);
-      throw error;
+
+      if (res.status === 200) {
+        await dispatch(getHireAsync());
+      } else {
+        return;
+      }
     }
   }
 );

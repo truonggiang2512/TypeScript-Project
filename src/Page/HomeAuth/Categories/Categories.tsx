@@ -59,7 +59,7 @@ function Categories({ arrAllJob }: Props) {
         <Box>
           <Box py={3}>
             <Button size="large" variant="text" endIcon={<NavigateNextIcon />}>
-              <Typography variant="h5"> Continue browsing</Typography>
+              <Typography variant="h3"> Job Categories</Typography>
             </Button>
           </Box>
           <Slider {...settings}>

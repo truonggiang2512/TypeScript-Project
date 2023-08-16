@@ -16,6 +16,7 @@ import {
   ContentState,
   deleteUserAsync,
   getUserAsync,
+  updateUserAsync,
 } from "../../../Services/redux/reducers/AdminReducer/adminReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../../Services/redux/configStore";
@@ -29,7 +30,11 @@ function TableUser({}: Props) {
     const ActionDeleteAPI = deleteUserAsync(id);
     dispatch(ActionDeleteAPI);
   };
-
+  const updateUser = (model: any) => {
+    console.log(model, "13213");
+    const ActionUpdateAPI = updateUserAsync(model);
+    dispatch(ActionUpdateAPI);
+  };
   useEffect(() => {
     setRows(arrUser);
   }, [arrUser]);
@@ -51,14 +56,12 @@ function TableUser({}: Props) {
     {
       field: "role",
       headerName: "Role",
-      type: "number",
       width: 200,
       editable: true,
     },
     {
       field: "phone",
       headerName: "Phone",
-      type: "number",
       width: 200,
       editable: true,
     },
@@ -70,7 +73,13 @@ function TableUser({}: Props) {
       renderCell: (params) => (
         <Box sx={{ display: "flex" }}>
           <Box>
-            <Button>Edit</Button>
+            <Button
+              onClick={() => {
+                updateUser(params.row);
+              }}
+            >
+              Edit
+            </Button>
           </Box>
           <Button
             onClick={() => {

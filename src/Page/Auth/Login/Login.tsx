@@ -3,13 +3,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType } from "../../../Services/redux/configStore";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { loginAsyncAction } from "../../../Services/redux/reducers/userReducer";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 type Props = {};
 const style = {
   position: "absolute" as "absolute",
@@ -35,7 +36,9 @@ export default function Login({}: Props) {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const loginFrm = useFormik<UserLoginFrm>({
     initialValues: {
       email: "",
@@ -140,8 +143,26 @@ export default function Login({}: Props) {
                         fullWidth
                         label="Password"
                         name="password"
+                        type={showPassword ? "text" : "password"}
                         onInput={loginFrm.handleChange}
                         onBlur={loginFrm.handleBlur}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                              >
+                                {showPassword ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
                       />
                     </FormControl>
                     {loginFrm.errors.password && (

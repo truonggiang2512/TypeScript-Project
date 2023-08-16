@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -18,6 +18,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "dayjs/locale/en-gb";
 import { signupAsyncAction } from "../../../Services/redux/reducers/userReducer";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 type Props = {};
 export interface UserSignupFrm {
   id: number;
@@ -50,7 +51,9 @@ export default function Register({}: Props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const signupFrm = useFormik<UserSignupFrm>({
     initialValues: {
       id: 0,
@@ -182,8 +185,26 @@ export default function Register({}: Props) {
                             fullWidth
                             label="Password"
                             name="password"
+                            type={showPassword ? "text" : "password"}
                             onBlur={signupFrm.handleBlur}
                             onChange={signupFrm.handleChange}
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                  >
+                                    {showPassword ? (
+                                      <Visibility />
+                                    ) : (
+                                      <VisibilityOff />
+                                    )}
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
                           />
                         </FormControl>
                         {signupFrm.errors.password && (
