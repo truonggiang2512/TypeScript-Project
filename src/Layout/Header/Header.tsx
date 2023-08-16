@@ -82,8 +82,7 @@ export default function Header() {
       );
     }
   };
-  const isAdmin = storage.get(USER_LOGIN).user.role;
-  console.log(isAdmin);
+  const isAdmin = storage.get(USER_LOGIN);
   useEffect(() => {}, []);
   return (
     <Container maxWidth={false} disableGutters={true}>
@@ -170,7 +169,7 @@ export default function Header() {
               gap: 0.5,
             }}
           >
-            {isAdmin === "ADMIN" ? (
+            {isAdmin?.user.role === "ADMIN" ? (
               <Button
                 onClick={() => {
                   navigate("/admin");
