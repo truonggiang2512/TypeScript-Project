@@ -9,7 +9,6 @@ const history = createBrowserHistory();
 export const DOMAIN = "https://fiverrnew.cybersoft.edu.vn/api/";
 export const TOKEN = "accessToken";
 export const TOKEN_CYBERSOFT = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzQiLCJIZXRIYW5TdHJpbmciOiIyMi8wMy8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MTEwNjU2MDAwMDAiLCJuYmYiOjE2OTMwNjkyMDAsImV4cCI6MTcxMTIxMzIwMH0.I9k3be3bbxp64NISKJ-A3aR6mEhF4QfCGakizTqBON8`;
-
 export const http = axios.create({
   baseURL: DOMAIN,
   timeout: 30000,
@@ -59,15 +58,15 @@ http.interceptors.response.use(
         //Remove userlogin trong localstorage
         localStorage.removeItem(USER_LOGIN);
         //Chuyển hướng về đăng nhập
-        history.push("/login");
+        location.pathname = "/login";
       }
       //Chưa đăng nhập
       alert("Đăng nhập để vào trang này !");
-      history.push("/login");
+      location.pathname = "/login";
     }
     if (err.response?.status === 403) {
       alert("Không đủ quyền truy cập vào trang này !");
-      history.push("/login");
+      // location.pathname = "/login";
     }
     return Promise.reject(err);
   }

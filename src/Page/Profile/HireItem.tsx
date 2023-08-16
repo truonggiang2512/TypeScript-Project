@@ -38,9 +38,7 @@ function HireItem({ HireDetail }: Props) {
                   py={2}
                   sx={{ display: "flex", justifyContent: "left", gap: 2 }}
                 >
-                  <NavLink
-                    to={`/detail/${HireDetail.congViec.maChiTietLoaiCongViec}`}
-                  >
+                  <NavLink to={`/detail/${HireDetail.congViec.id}`}>
                     <Button size="small" variant="contained">
                       View Detail
                     </Button>

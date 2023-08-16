@@ -48,6 +48,20 @@ const searchReducer = createSlice({
       searchJobAsync.rejected,
       (state: CongViecState, action: any) => {}
     );
+    builder.addCase(
+      searchIDAsync.pending,
+      (state: CongViecState, action: any) => {}
+    );
+    builder.addCase(
+      searchIDAsync.fulfilled,
+      (state: CongViecState, action: PayloadAction<LoaiCongViecModal[]>) => {
+        state.arrSearch = action.payload;
+      }
+    );
+    builder.addCase(
+      searchIDAsync.rejected,
+      (state: CongViecState, action: any) => {}
+    );
   },
 });
 
@@ -70,6 +84,18 @@ export const searchJobAsync = createAsyncThunk(
       };
       console.log(dataWithTenCongViec);
       return dataWithTenCongViec;
+    } catch (error) {
+      console.error("Error during fetching jobs:", error);
+      throw error;
+    }
+  }
+);
+export const searchIDAsync = createAsyncThunk(
+  "searchIDAsync",
+  async (id: number) => {
+    try {
+      const res = await http.get(`cong-viec/lay-cong-viec-chi-tiet/${id}`);
+      return res.data.content;
     } catch (error) {
       console.error("Error during fetching jobs:", error);
       throw error;

@@ -3,19 +3,17 @@ import { Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import ModeSelect from "../../Component/ModeSelect";
 import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
-// import { ReactComponent as fiverrLogo } from "../../assets/favicon/fiverr_icon_236762.svg";
 import {
   Button,
-  IconButton,
   InputAdornment,
   SvgIcon,
   TextField,
   Typography,
 } from "@mui/material";
-import WorkSpace from "./Menu/WorkSpace";
-import Resources from "./Menu/Resources";
-import Support from "./Menu/Support";
-import Graphic from "./BoardBar/Graphics";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Graphic from "./BoardBar/MenuJob/Graphics";
 import SearchIcon from "@mui/icons-material/Search";
 import BurgerDrawer from "../BurgerDrawer/BurgerDrawer";
 import Register from "../../Page/Auth/Register/Register";
@@ -26,6 +24,11 @@ import { TOKEN } from "../../Utils/config";
 import { searchJobAsync } from "../../Services/redux/searchReducer/searchReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType } from "../../Services/redux/configStore";
+import Profile from "./Menu/Profile";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import { USER_LOGIN } from "../../Utils/constant";
 export default function Header() {
   const token = storage.get(TOKEN);
   const dispatch: DispatchType = useDispatch();
@@ -49,13 +52,26 @@ export default function Header() {
   const isDisableLogin: any = () => {
     if (token) {
       return (
-        <Button
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          Profile
-        </Button>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: { md: "flex", xs: "none" } }}>
+            <Tooltip title="Notification">
+              <IconButton>
+                <NotificationsNoneIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Messages">
+              <IconButton>
+                <MailOutlineIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Lists">
+              <IconButton>
+                <FavoriteBorderIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+          <Profile />
+        </Box>
       );
     } else {
       return (
@@ -66,6 +82,8 @@ export default function Header() {
       );
     }
   };
+  const isAdmin = storage.get(USER_LOGIN).user.role;
+  console.log(isAdmin);
   useEffect(() => {}, []);
   return (
     <Container maxWidth={false} disableGutters={true}>
@@ -74,7 +92,7 @@ export default function Header() {
           position: "fixed",
           width: "100vw",
           backgroundColor: "background.paper",
-          zIndex: "99",
+          zIndex: (theme) => theme.zIndex.drawer + 30,
         }}
       >
         <Box
@@ -100,18 +118,12 @@ export default function Header() {
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-              <SvgIcon
-                // component={fiverrLogo}
-                inheritViewBox
-                fontSize="small"
-                sx={{ color: "primary.main" }}
-              />
               <Typography
                 onClick={() => {
                   navigate("/home");
                 }}
                 sx={{
-                  fontSize: "1.7rem",
+                  fontSize: "2.0rem",
                   fontWeight: "bold",
                   color: "primary.main",
                   cursor: "pointer",
@@ -123,7 +135,7 @@ export default function Header() {
                 sx={{
                   display: { md: "block", xs: "none", sm: "none" },
                   ml: 3,
-                  width: 400,
+                  width: 500,
                   maxWidth: "100%",
                 }}
               >
@@ -158,9 +170,18 @@ export default function Header() {
               gap: 0.5,
             }}
           >
-            <Support />
-            <Resources />
-            <WorkSpace />
+            {isAdmin === "ADMIN" ? (
+              <Button
+                onClick={() => {
+                  navigate("/admin");
+                }}
+              >
+                Admin
+              </Button>
+            ) : (
+              <Box></Box>
+            )}
+
             <ModeSelect />
             {isDisableLogin()}
           </Box>
@@ -198,7 +219,6 @@ export default function Header() {
           px={4}
           py={0.3}
           sx={{
-            display: { md: "block", xs: "none" },
             alignItems: "center",
             width: "100vw",
             border: 1,
