@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AxiosRequestConfig } from "axios";
+import { useDispatch } from "react-redux";
 import { http } from "../../../../Utils/config";
+import { DispatchType } from "../../configStore";
 export interface User {
   id: number;
   name: string;
@@ -145,8 +148,72 @@ export const getJobTypeAsync = createAsyncThunk("getJobTypeAsync", async () => {
 export const getJobHireAsync = createAsyncThunk("getJobHireAsync", async () => {
   try {
     const res = await http.get("thue-cong-viec");
+    console.log(res);
     return res.data.content;
   } catch (error) {
     throw error;
   }
 });
+
+//-----------------DELETE-----------------
+//--------------deleteUserAsync-----------
+export const deleteUserAsync = createAsyncThunk(
+  "deleteUserAsync",
+  async (id: any, { dispatch }) => {
+    if (window.confirm("Do you want to remove?")) {
+      const res = await http.delete(`users?id=${id}`);
+      if (res.status === 200) {
+        await dispatch(getUserAsync());
+        console.log("isSuccess");
+      } else {
+        return;
+      }
+    }
+  }
+);
+
+//--------------deleteJobAsync-----------
+export const deleteJobAsync = createAsyncThunk(
+  "deleteJobAsync",
+  async (id: number, { dispatch }) => {
+    if (window.confirm("Do you want to remove?")) {
+      const res = await http.delete(`cong-viec/${id}`);
+      if (res.status === 200) {
+        await dispatch(getJobAsync());
+      } else {
+        return;
+      }
+    }
+  }
+);
+
+//--------------deleteJobTypeAsync-----------
+export const deleteJobTypeAsync = createAsyncThunk(
+  "deleteJobTypeAsync",
+  async (id: number, { dispatch }) => {
+    if (window.confirm("Do you want to remove?")) {
+      const res = await http.delete(`loai-cong-viec/${id}`);
+
+      if (res.status === 200) {
+        await dispatch(getJobTypeAsync());
+      } else {
+        return;
+      }
+    }
+  }
+);
+//--------------deleteJobHireAsync-----------
+export const deleteJobHireAsync = createAsyncThunk(
+  "deleteJobHireAsync",
+  async (id: number, { dispatch }) => {
+    if (window.confirm("Do you want to remove?")) {
+      const res = await http.delete(`thue-cong-viec/${id}`);
+
+      if (res.status === 200) {
+        await dispatch(getJobHireAsync());
+      } else {
+        return;
+      }
+    }
+  }
+);

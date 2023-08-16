@@ -58,15 +58,15 @@ http.interceptors.response.use(
         //Remove userlogin trong localstorage
         localStorage.removeItem(USER_LOGIN);
         //Chuyển hướng về đăng nhập
-        history.push("/login");
+        location.pathname = "/login";
       }
       //Chưa đăng nhập
       alert("Đăng nhập để vào trang này !");
-      history.push("/login");
+      location.pathname = "/login";
     }
     if (err.response?.status === 403) {
       alert("Không đủ quyền truy cập vào trang này !");
-      history.push("/login");
+      // location.pathname = "/login";
     }
     return Promise.reject(err);
   }

@@ -69,23 +69,15 @@ function Admin({}: Props) {
     setOpen(false);
   };
   const showUser = () => {
-    // const actionUserAPI = getUserAsync();
-    // dispatch(actionUserAPI);
     setTable(<TableUser />);
   };
   const showJob = () => {
-    const actionJobAPI = getJobAsync();
-    dispatch(actionJobAPI);
     setTable(<TableJob />);
   };
   const showJobType = () => {
-    const actionJobTypeAPI = getJobTypeAsync();
-    dispatch(actionJobTypeAPI);
     setTable(<TableJobType />);
   };
   const showHire = () => {
-    const actionHireAPI = getJobHireAsync();
-    dispatch(actionHireAPI);
     setTable(<TableHire />);
   };
 

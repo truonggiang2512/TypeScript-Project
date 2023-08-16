@@ -20,7 +20,7 @@ function Graphic({}: Props) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 8,
+    slidesToShow: 6,
     slidesToScroll: 4,
     initialSlide: 0,
     responsive: [
