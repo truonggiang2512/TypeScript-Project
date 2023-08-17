@@ -8,20 +8,24 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
 import { LoaiCongViecModal } from "../../Services/redux/searchReducer/searchReducer";
+import { NavLink, useNavigate } from "react-router-dom";
 type Props = {};
 
 function Search({}: Props) {
   const arrSearch = useSelector((state: any) => state.searchReducer.arrSearch);
+  console.log(arrSearch, "123");
   const isEmpty = arrSearch.data?.length >= 1;
-  console.log(isEmpty);
   const renderSearch = () => {
     if (isEmpty) {
       return arrSearch.data?.map((item: any, key: any) => {
         return (
           <Grid item xs={4}>
-            <Box>
-              <Box sx={{ Width: 280, boder: "none" }}>
-                <Box sx={{ cursor: "pointer" }} onClick={() => {}}>
+            <NavLink
+              style={{ textDecoration: "none", color: "none" }}
+              to={`/detail/${item?.id}`}
+            >
+              <Box sx={{ Width: 280, boder: "none", color: "primary.main" }}>
+                <Box sx={{ cursor: "pointer" }}>
                   <CardMedia
                     sx={{
                       borderRadius: 2,
@@ -102,7 +106,7 @@ function Search({}: Props) {
                   </CardContent>
                 </Box>
               </Box>
-            </Box>
+            </NavLink>
           </Grid>
         );
       });

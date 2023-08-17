@@ -13,6 +13,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./css/menuJob.min.css";
+import { getIdTypeAsync } from "../../../../Services/redux/searchReducer/searchReducer";
 
 type Props = {};
 function Graphic({}: Props) {
@@ -82,6 +83,10 @@ function Graphic({}: Props) {
     const actionMenuAPI = menuAsync();
     dispatch(actionMenuAPI);
   }, []);
+  const getDetailTypeJob = (id: number) => {
+    const actionDetailJobAPI = getIdTypeAsync(id);
+    dispatch(actionDetailJobAPI);
+  };
   const renderMenuMax = () => {
     return arrMenu.map((loaiCongViec: any) => {
       return (
@@ -90,9 +95,7 @@ function Graphic({}: Props) {
             key={loaiCongViec.id}
             sx={{ cursor: "pointer" }}
             onClick={() => {
-              const actionTypeAPI = jobTypeAsync(loaiCongViec.id);
-              dispatch(actionTypeAPI);
-              console.log(loaiCongViec.id, "id");
+              getDetailTypeJob(loaiCongViec.id);
               navigate("/jobtype");
             }}
           >

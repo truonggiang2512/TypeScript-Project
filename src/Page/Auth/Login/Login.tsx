@@ -47,8 +47,11 @@ export default function Login({}: Props) {
     validationSchema: yup.object().shape({
       email: yup
         .string()
-        .email("email is invalid")
-        .required("email cannot be blank"),
+        .required("email cannot be blank")
+        .matches(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          "Enter valid Email !"
+        ),
       password: yup.string().required("password cannot be blank"),
     }),
     onSubmit: (values: UserLoginFrm) => {
@@ -77,7 +80,7 @@ export default function Login({}: Props) {
               <CloseIcon />
             </Button>
           </Box>
-          <Box p={4}>
+          <Box p={3}>
             <Box
               sx={{
                 pb: { md: 5, sm: 5, xs: 2 },

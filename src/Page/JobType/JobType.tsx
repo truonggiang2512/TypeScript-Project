@@ -7,10 +7,10 @@ import { RootState } from "../../Services/redux/configStore";
 type Props = {};
 
 function JobType({}: Props) {
-  const arrJob = useSelector(
-    (state: RootState) => state.jobTypeReducer.arrType
+  const arrChiTiet = useSelector(
+    (state: RootState) => state.searchReducer.arrChiTiet
   );
-  console.log(arrJob);
+
   return (
     <Box py={5}>
       <Box>
@@ -26,7 +26,7 @@ function JobType({}: Props) {
             }}
           >
             <Box sx={{ textAlign: "center", py: 8 }}>
-              {arrJob.map((item) => {
+              {arrChiTiet.map((item) => {
                 return (
                   <Typography color="white" variant="h3">
                     {item.tenLoaiCongViec}
@@ -58,7 +58,7 @@ function JobType({}: Props) {
         </Box>
         <Box sx={{ pt: 7, px: { md: 7, xs: 0 } }}>
           <Box>
-            {arrJob.map((item) => (
+            {arrChiTiet?.map((item) => (
               <Box>
                 <Typography sx={{ fontSize: "24px", fontWeight: "500", py: 3 }}>
                   Explore {item.tenLoaiCongViec}

@@ -13,6 +13,7 @@ import Login from "../Page/Auth/Login/Login";
 import Register from "../Page/Auth/Register/Register";
 import { TOKEN } from "../Utils/config";
 import HomeAuth from "../Page/HomeAuth/HomeAuth";
+import SearchType from "../Page/Search/SearchType";
 const isLogin = storage.get("isLogin");
 const token = storage.get(TOKEN);
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/searchtype",
+        element: <SearchType />,
       },
       {
         path: "/jobtype",

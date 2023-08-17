@@ -22,11 +22,32 @@ export interface CongViecModal {
   moTaNgan: string;
   saoCongViec: number;
 }
+
+export interface DsChiTietLoai {
+  id: number;
+  tenLoaiCongViec: string;
+  dsNhomChiTietLoai: DsNhomChiTietLoai[];
+}
+export interface DsNhomChiTietLoai {
+  id: number;
+  tenNhom: string;
+  hinhAnh: string;
+  maLoaiCongviec: number;
+  dsChiTietLoai: DsChiTietLoai[];
+}
+export interface DsChiTietLoai {
+  id: number;
+  tenChiTiet: string;
+}
 export interface CongViecState {
   arrSearch: LoaiCongViecModal[];
+  arrChiTiet: DsChiTietLoai[];
+  arrChiTietLoai: LoaiCongViecModal[];
 }
 const initialState: CongViecState = {
   arrSearch: [],
+  arrChiTiet: [],
+  arrChiTietLoai: [],
 };
 
 const searchReducer = createSlice({
@@ -62,6 +83,36 @@ const searchReducer = createSlice({
       searchIDAsync.rejected,
       (state: CongViecState, action: any) => {}
     );
+    //------------search Theo ID -------------
+    builder.addCase(
+      searchIdTypeAsync.pending,
+      (state: CongViecState, action: any) => {}
+    );
+    builder.addCase(
+      searchIdTypeAsync.fulfilled,
+      (state: CongViecState, action: PayloadAction<LoaiCongViecModal[]>) => {
+        state.arrChiTietLoai = action.payload;
+      }
+    );
+    builder.addCase(
+      searchIdTypeAsync.rejected,
+      (state: CongViecState, action: any) => {}
+    );
+    //------------dsChiTietLoai---------------
+    builder.addCase(
+      getIdTypeAsync.pending,
+      (state: CongViecState, action: any) => {}
+    );
+    builder.addCase(
+      getIdTypeAsync.fulfilled,
+      (state: CongViecState, action: PayloadAction<DsChiTietLoai[]>) => {
+        state.arrChiTiet = action.payload;
+      }
+    );
+    builder.addCase(
+      getIdTypeAsync.rejected,
+      (state: CongViecState, action: any) => {}
+    );
   },
 });
 
@@ -95,6 +146,51 @@ export const searchIDAsync = createAsyncThunk(
   async (id: number) => {
     try {
       const res = await http.get(`cong-viec/lay-cong-viec-chi-tiet/${id}`);
+      return res.data.content;
+    } catch (error) {
+      console.error("Error during fetching jobs:", error);
+      throw error;
+    }
+  }
+);
+
+//-------------------searchIdTypeAsync-------------
+export const searchIdTypeAsync = createAsyncThunk(
+  "searchIdTypeAsync",
+  async (id: number) => {
+    try {
+      const res = await http.get(
+        `cong-viec/lay-cong-viec-theo-chi-tiet-loai/${id}`
+      );
+
+      if (res.data.content.length > 0) {
+        const firstTenChiTietLoai = res.data.content[0].tenChiTietLoai;
+
+        // Create an object with the merged values
+        const mergedData = {
+          firstTenChiTietLoai,
+          content: res.data.content,
+        };
+
+        // Now mergedData contains the merged object
+        console.log(mergedData);
+
+        return mergedData; // Return the merged object
+      }
+    } catch (error) {
+      console.error("Error during fetching jobs:", error);
+      throw error;
+    }
+  }
+);
+
+//-------------------getIdTypeAsync-------------
+export const getIdTypeAsync = createAsyncThunk(
+  "getIdTypeAsync",
+  async (id: number) => {
+    try {
+      const res = await http.get(`cong-viec/lay-chi-tiet-loai-cong-viec/${id}`);
+      console.log(res.data.content, "ma Chi tiet loai");
       return res.data.content;
     } catch (error) {
       console.error("Error during fetching jobs:", error);

@@ -38,8 +38,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80vw",
-  height: "90vh",
+  width: "60vw",
+  height: "75vh",
   bgcolor: "background.auth",
   border: "2px solid #000",
   boxShadow: 24,
@@ -61,7 +61,7 @@ export default function Register({}: Props) {
       email: "",
       password: "",
       phone: "",
-      birthday: "20/2/1999",
+      birthday: "",
       gender: true,
       role: "",
       skill: [""],
@@ -70,10 +70,25 @@ export default function Register({}: Props) {
     validationSchema: yup.object().shape({
       email: yup
         .string()
-        .email("email is invalid")
-        .required("email cannot be blank"),
-      password: yup.string().required("password cannot be blank"),
-      name: yup.string().required("name cannot be blank"),
+        .required("email cannot be blank")
+        .matches(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          "Enter valid Email !"
+        ),
+      password: yup
+        .string()
+        .required("password cannot be blank")
+        .matches(
+          /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$/,
+          "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+        ),
+      name: yup
+        .string()
+        .required("name cannot be blank")
+        .matches(
+          /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
+          "Enter valid name !"
+        ),
       phone: yup.number().required("phone cannot be blank"),
     }),
     onSubmit: (values: UserSignupFrm) => {
@@ -98,17 +113,9 @@ export default function Register({}: Props) {
               <CloseIcon />
             </Button>
           </Box>
-          <Box p={4}>
+          <Box p={3}>
             <Box id="modal-modal-description">
-              <Box
-                pb={10}
-                sx={{
-                  display: { md: "flex", xs: "block" },
-                  width: { md: "30%", xs: "100%" },
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
+              <Box pb={3}>
                 <Typography
                   sx={{
                     display: "inline-block",
@@ -119,9 +126,6 @@ export default function Register({}: Props) {
                 >
                   Fiverr
                 </Typography>
-
-                <Button variant="text">Home</Button>
-                <Button variant="text">Join</Button>
               </Box>
               <Box>
                 <Box>
@@ -136,7 +140,7 @@ export default function Register({}: Props) {
                 </Box>
               </Box>
 
-              <Box pt={4}>
+              <Box pt={3}>
                 <form onSubmit={signupFrm.handleSubmit}>
                   <Box
                     sx={{
@@ -252,18 +256,6 @@ export default function Register({}: Props) {
                         )}
                       </Box>
 
-                      <Box pt={2}>
-                        <LocalizationProvider
-                          adapterLocale="en-gb"
-                          dateAdapter={AdapterDayjs}
-                        >
-                          <DateField
-                            disableFuture
-                            format="DD-MM-YYYY"
-                            label="Birthday"
-                          />
-                        </LocalizationProvider>
-                      </Box>
                       <Box mt={2}>
                         <FormControl>
                           <FormLabel id="demo-row-radio-buttons-group-label">
@@ -291,20 +283,16 @@ export default function Register({}: Props) {
                             />
                           </RadioGroup>
                         </FormControl>
+                        <Box pt={2}>
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                          >
+                            Sign Up
+                          </Button>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: { md: "flex", xs: "block" },
-                      width: { md: "40%", xs: "100%" },
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Box pt={2}>
-                      <Button type="submit" variant="contained" color="primary">
-                        Sign Up
-                      </Button>
                     </Box>
                   </Box>
                 </form>
