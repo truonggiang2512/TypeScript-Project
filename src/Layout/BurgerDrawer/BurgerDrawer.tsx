@@ -8,6 +8,9 @@ import {
   ListItemButton,
   ListItemIcon,
   Collapse,
+  Box,
+  Button,
+  Avatar,
 } from "@mui/material";
 import Resources from "../Header/Menu/Resources";
 import Support from "../Header/Menu/Support";
@@ -24,6 +27,11 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import ModeSelect from "../../Component/ModeSelect";
 import Login from "../../Page/Auth/Login/Login";
 import Register from "../../Page/Auth/Register/Register";
+import storage from "../../Utils/storage";
+import Profile from "../Header/Menu/Profile";
+import { TOKEN } from "../../Utils/config";
+import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router-dom";
 interface BurgerDrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -31,24 +39,38 @@ interface BurgerDrawerProps {
 
 const BurgerDrawer: React.FC<BurgerDrawerProps> = ({ isOpen, onClose }) => {
   const [open, setOpen] = useState(true);
-
+  const navigate = useNavigate();
   const handleClick = () => {
     setOpen(!open);
   };
+  const token = storage.get(TOKEN);
+  const isDisableLoginMb: any = () => {
+    if (token) {
+      return (
+        <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+          <Box sx={{ cursor: "pointer" }}>
+            <Avatar
+              onClick={() => {
+                navigate("/profile");
+              }}
+              src=""
+            ></Avatar>
+          </Box>
+          <Box>Welcomback</Box>
+        </Box>
+      );
+    } else {
+      return <Box></Box>;
+    }
+  };
   return (
-    <Drawer
-      sx={{ zIndex: 10000 }}
-      anchor="left"
-      open={isOpen}
-      onClose={onClose}
-    >
+    <Drawer sx={{ zIndex: 10000 }} anchor="left" open={isOpen}>
+      <Box sx={{ cursor: "pointer", textAlign: "right", pt: 3, pr: 3 }}>
+        <CloseIcon onClick={onClose} />
+      </Box>
       <List sx={{ width: 250, backgroundColor: "background.paper" }}>
-        <ListItem>
-          <Register />
-        </ListItem>
-        <ListItem>
-          <Login />
-        </ListItem>
+        <ListItem>{isDisableLoginMb()}</ListItem>
+
         <ListItemButton onClick={handleClick}>
           <ListItemText
             sx={{ color: "primary.main" }}

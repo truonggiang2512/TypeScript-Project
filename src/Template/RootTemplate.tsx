@@ -12,7 +12,7 @@ export default function RootTemplate() {
       <Header />
       <Box
         sx={{
-          paddingTop: { md: "120px", xs: "160px", sm: "160px" },
+          paddingTop: { md: "100px", xs: "160px", sm: "160px" },
         }}
       >
         <Outlet />

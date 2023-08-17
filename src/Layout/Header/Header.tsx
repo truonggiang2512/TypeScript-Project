@@ -82,6 +82,22 @@ export default function Header() {
       );
     }
   };
+  const isDisableLoginMb: any = () => {
+    if (token) {
+      return (
+        <Box>
+          <Profile />
+        </Box>
+      );
+    } else {
+      return (
+        <Box sx={{ display: "flex" }}>
+          <Login />
+          <Register />
+        </Box>
+      );
+    }
+  };
   const isAdmin = storage.get(USER_LOGIN);
   useEffect(() => {}, []);
   return (
@@ -115,8 +131,20 @@ export default function Header() {
             </IconButton>
             <BurgerDrawer isOpen={isDrawerOpen} onClose={handleDrawerClose} />
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <Box
+            sx={{
+              display: { md: "flex", xs: "block" },
+              alignItems: "center",
+              gap: { md: 2, xs: 0 },
+            }}
+          >
+            <Box
+              sx={{
+                display: { md: "flex", xs: "block" },
+                alignItems: "center",
+                gap: { md: 0.5, xs: 0 },
+              }}
+            >
               <Typography
                 onClick={() => {
                   navigate("/home");
@@ -184,8 +212,8 @@ export default function Header() {
             <ModeSelect />
             {isDisableLogin()}
           </Box>
-          <Box sx={{ display: { xs: "block", md: "none" } }}>
-            <Register />
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            {isDisableLoginMb()}
           </Box>
         </Box>
         <Box

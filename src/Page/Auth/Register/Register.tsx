@@ -19,6 +19,7 @@ import * as yup from "yup";
 import "dayjs/locale/en-gb";
 import { signupAsyncAction } from "../../../Services/redux/reducers/userReducer";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 type Props = {};
 export interface UserSignupFrm {
   id: number;
@@ -42,7 +43,6 @@ const style = {
   bgcolor: "background.auth",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
   maxHeight: "90vh",
   overflowY: "auto",
 };
@@ -89,12 +89,16 @@ export default function Register({}: Props) {
       </Button>
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Box>
+          <Box sx={{ textAlign: "right", position: "sticky", top: 20 }}>
+            <Button onClick={handleClose}>
+              <CloseIcon />
+            </Button>
+          </Box>
+          <Box p={4}>
             <Box id="modal-modal-description">
               <Box
                 pb={10}

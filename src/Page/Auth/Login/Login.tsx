@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { loginAsyncAction } from "../../../Services/redux/reducers/userReducer";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 type Props = {};
 const style = {
   position: "absolute" as "absolute",
@@ -22,7 +23,6 @@ const style = {
   bgcolor: "background.auth",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
 };
 export interface UserLoginFrm {
   email: string;
@@ -68,120 +68,119 @@ export default function Login({}: Props) {
       </Button>
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title-login"
         aria-describedby="modal-modal-description-login"
       >
         <Box sx={style} id="modal-modal-title-login">
-          <Box
-            sx={{
-              display: { md: "flex", xs: "block" },
-              width: { md: "3%", xs: "100%" },
-              justifyContent: "space-between",
-              alignItems: "center",
-              pb: { md: 5, sm: 5, xs: 2 },
-            }}
-          >
-            <Typography
+          <Box sx={{ textAlign: "right", pt: 2 }}>
+            <Button onClick={handleClose}>
+              <CloseIcon />
+            </Button>
+          </Box>
+          <Box p={4}>
+            <Box
               sx={{
-                display: "inline-block",
-                fontSize: "1.7rem",
-                fontWeight: "bold",
-                color: "primary.main",
+                pb: { md: 5, sm: 5, xs: 2 },
               }}
             >
-              Fiverr
-            </Typography>
-
-            <Button variant="text">Home</Button>
-            <Button variant="text">Join</Button>
-          </Box>
-          <Box>
-            <Box>
-              <Typography variant="subtitle2" color="primary.main">
-                Welcome back
-              </Typography>
-            </Box>
-            <Box sx={{ py: { md: 2, xs: 0, sm: 2 } }}>
-              <Typography variant="h1" color="primary.h1">
-                Sign in to Fiverr
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box pt={4}>
-            <form onSubmit={loginFrm.handleSubmit}>
-              <Box
+              <Typography
                 sx={{
-                  display: { md: "flex", xs: "block" },
-                  justifyContent: "space-between",
+                  display: "inline-block",
+                  fontSize: "1.7rem",
+                  fontWeight: "bold",
+                  color: "primary.main",
                 }}
               >
-                <Box sx={{ width: "100%" }}>
-                  <Box sx={{ pt: { xs: 1, sm: 2, md: 2 } }}>
-                    <FormControl fullWidth>
-                      <TextField
-                        fullWidth
-                        label="Email"
-                        name="email"
-                        onBlur={loginFrm.handleBlur}
-                        onInput={loginFrm.handleChange}
-                      />
-                    </FormControl>
-                    {loginFrm.errors.email && (
-                      <p
-                        style={{ color: "red", margin: "5px 0px 0 0" }}
-                        className="text text-danger"
-                      >
-                        (*) {loginFrm.errors.email}
-                      </p>
-                    )}
-                  </Box>
-                  <Box pt={2}>
-                    <FormControl fullWidth>
-                      <TextField
-                        fullWidth
-                        label="Password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
-                        onInput={loginFrm.handleChange}
-                        onBlur={loginFrm.handleBlur}
-                        InputProps={{
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                              >
-                                {showPassword ? (
-                                  <Visibility />
-                                ) : (
-                                  <VisibilityOff />
-                                )}
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </FormControl>
-                    {loginFrm.errors.password && (
-                      <p
-                        style={{ color: "red", margin: "5px 0px 0 0" }}
-                        className="text text-danger"
-                      >
-                        (*) {loginFrm.errors.password}
-                      </p>
-                    )}
-                  </Box>
-                  <Box pt={2}>
-                    <Button type="submit" variant="contained">
-                      Login
-                    </Button>
+                Fiverr
+              </Typography>
+            </Box>
+            <Box>
+              <Box>
+                <Typography variant="subtitle2" color="primary.main">
+                  Welcome back
+                </Typography>
+              </Box>
+              <Box sx={{ py: { md: 2, xs: 0, sm: 2 } }}>
+                <Typography variant="h1" color="primary.h1">
+                  Sign in to Fiverr
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box pt={4}>
+              <form onSubmit={loginFrm.handleSubmit}>
+                <Box
+                  sx={{
+                    display: { md: "flex", xs: "block" },
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Box sx={{ width: "100%" }}>
+                    <Box sx={{ pt: { xs: 1, sm: 2, md: 2 } }}>
+                      <FormControl fullWidth>
+                        <TextField
+                          fullWidth
+                          label="Email"
+                          name="email"
+                          onBlur={loginFrm.handleBlur}
+                          onInput={loginFrm.handleChange}
+                        />
+                      </FormControl>
+                      {loginFrm.errors.email && (
+                        <p
+                          style={{ color: "red", margin: "5px 0px 0 0" }}
+                          className="text text-danger"
+                        >
+                          (*) {loginFrm.errors.email}
+                        </p>
+                      )}
+                    </Box>
+                    <Box pt={2}>
+                      <FormControl fullWidth>
+                        <TextField
+                          fullWidth
+                          label="Password"
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          onInput={loginFrm.handleChange}
+                          onBlur={loginFrm.handleBlur}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                  onMouseDown={handleMouseDownPassword}
+                                >
+                                  {showPassword ? (
+                                    <Visibility />
+                                  ) : (
+                                    <VisibilityOff />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </FormControl>
+                      {loginFrm.errors.password && (
+                        <p
+                          style={{ color: "red", margin: "5px 0px 0 0" }}
+                          className="text text-danger"
+                        >
+                          (*) {loginFrm.errors.password}
+                        </p>
+                      )}
+                    </Box>
+                    <Box pt={2}>
+                      <Button type="submit" variant="contained">
+                        Login
+                      </Button>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            </form>
+              </form>
+            </Box>
           </Box>
         </Box>
       </Modal>
