@@ -17,6 +17,7 @@ import {
   deleteUserAsync,
   getUserAsync,
   updateUserAsync,
+  User,
 } from "../../../Services/redux/reducers/AdminReducer/adminReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../../Services/redux/configStore";
@@ -97,6 +98,15 @@ function TableUser({}: Props) {
     dispatch(actionUserAPI);
   }, []);
 
+  // const handleAddRow = async (newRow) => {
+  //   try {
+  //     const response = await axios.post("your_api_endpoint_here", newRow);
+  //     const createdRow = response.data; // Assuming the API returns the new row data
+  //     setRows((prevRows) => [...prevRows, createdRow]);
+  //   } catch (error) {
+  //     console.error("Error adding new row:", error);
+  //   }
+  // };
   return (
     <Box>
       <Box sx={{ height: 400, width: "100%" }}>
@@ -106,7 +116,7 @@ function TableUser({}: Props) {
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 5,
+                pageSize: 6,
               },
             },
           }}

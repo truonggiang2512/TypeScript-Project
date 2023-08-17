@@ -53,7 +53,6 @@ const userReducer = createSlice({
       .addCase(
         loginAsyncAction.fulfilled,
         (state: UserState, action: PayloadAction<UserModel>) => {
-          alert("Dang Nhap thanh cong");
           state.userLogin = action.payload;
           state.isOpen = true;
         }
@@ -66,9 +65,7 @@ const userReducer = createSlice({
       .addCase(
         signupAsyncAction.fulfilled,
         (state: UserState, action: PayloadAction<RegisModel>) => {
-          alert("Dang ki thanh cong");
           state.userRegister = action.payload;
-          window.location.pathname = "/home";
         }
       )
       .addCase(signupAsyncAction.rejected, (state: UserState, action: any) => {
@@ -98,9 +95,20 @@ export const loginAsyncAction = createAsyncThunk(
 );
 export const signupAsyncAction = createAsyncThunk(
   "signupAsyncAction",
-  async (userRegister: UserSignupFrm, { rejectWithValue }) => {
+  async (userRegister: UserSignupFrm, { dispatch, rejectWithValue }) => {
     try {
       const res = await http.post("auth/signup", userRegister);
+      alert("Dang ki thanh cong");
+      if (res.status === 200) {
+        await dispatch(
+          loginAsyncAction({
+            email: userRegister.email,
+            password: userRegister.password,
+          })
+        );
+      } else {
+        return;
+      }
       console.log(res.data.content);
       return res.data.content;
     } catch (error: any) {
