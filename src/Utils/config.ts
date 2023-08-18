@@ -3,9 +3,7 @@ import axios from "axios";
 import storage from "./storage";
 import { createBrowserHistory } from "history";
 import { USER_LOGIN } from "./constant";
-// Tạo một instance của history
 const history = createBrowserHistory();
-//setup constant
 export const DOMAIN = "https://fiverrnew.cybersoft.edu.vn/api/";
 export const TOKEN = "accessToken";
 export const TOKEN_CYBERSOFT = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzQiLCJIZXRIYW5TdHJpbmciOiIyMi8wMy8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MTEwNjU2MDAwMDAiLCJuYmYiOjE2OTMwNjkyMDAsImV4cCI6MTcxMTIxMzIwMH0.I9k3be3bbxp64NISKJ-A3aR6mEhF4QfCGakizTqBON8`;
@@ -66,7 +64,6 @@ http.interceptors.response.use(
     }
     if (err.response?.status === 403) {
       alert("Không đủ quyền truy cập vào trang này !");
-      // location.pathname = "/login";
     }
     return Promise.reject(err);
   }

@@ -85,21 +85,7 @@ const adminReducer = createSlice({
         }
       )
       .addCase(getJobAsync.rejected, (state: ContentState, action: any) => {})
-      //----------------------Get Type of Job-----------------------
-      // .addCase(getJobTypeAsync.pending, (state: ContentState, action: any) => {
-      //   // state.isLoading = true;
-      // })
-      // .addCase(
-      //   getJobTypeAsync.fulfilled,
-      //   (state: ContentState, action: PayloadAction<JobType[]>) => {
-      //     state.arrJobType = action.payload;
-      //     // state.isLoading = false;
-      //   }
-      // )
-      // .addCase(
-      //   getJobTypeAsync.rejected,
-      //   (state: ContentState, action: any) => {}
-      // )
+
       //-----------------------Hire Job-----------------------
       .addCase(getJobHireAsync.pending, (state: ContentState, action: any) => {
         state.isLoading = true;

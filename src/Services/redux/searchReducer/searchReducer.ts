@@ -181,16 +181,14 @@ export const searchIdTypeAsync = createAsyncThunk(
       if (res.data.content.length > 0) {
         const firstTenChiTietLoai = res.data.content[0].tenChiTietLoai;
 
-        // Create an object with the merged values
         const mergedData = {
           firstTenChiTietLoai,
           content: res.data.content,
         };
 
-        // Now mergedData contains the merged object
         console.log(mergedData);
 
-        return mergedData; // Return the merged object
+        return mergedData;
       }
     } catch (error) {
       console.error("Error during fetching jobs:", error);
