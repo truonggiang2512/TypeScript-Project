@@ -216,32 +216,34 @@ export default function Header() {
             {isDisableLoginMb()}
           </Box>
         </Box>
-        <Box
-          px={4}
-          py={3}
-          sx={{
-            display: { xs: "flex", md: "none" },
-            alignItems: "center",
-            width: "100vw",
-            justifyContent: "space-between",
-          }}
-        >
-          <TextField
-            type="search"
-            fullWidth
-            size="small"
-            id="search"
-            label="What service are you looking for?"
-            variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
+        <form action="" onSubmit={submitSearch}>
+          <Box
+            px={4}
+            py={3}
+            sx={{
+              display: { xs: "flex", md: "none" },
+              alignItems: "center",
+              width: "100vw",
+              justifyContent: "space-between",
             }}
-          />
-        </Box>
+          >
+            <TextField
+              type="search"
+              fullWidth
+              size="small"
+              id="search"
+              label="What service are you looking for?"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </form>
         <Box
           px={4}
           py={0.3}
