@@ -94,9 +94,7 @@ function HomeAuth({}: Props) {
           <Box my={5}>
             <Joblist />
           </Box>
-          <Box>
-            <HomeServices />
-          </Box>
+
           <Box mt={5}>
             <Banner />
           </Box>

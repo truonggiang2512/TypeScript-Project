@@ -18,7 +18,6 @@ export default function Detail() {
   const arrDetail = useSelector(
     (state: RootState) => state.detailReducer.arrDetail
   );
-
   const params = useParams();
   const dispatch: DispatchType = useDispatch();
   useEffect(() => {

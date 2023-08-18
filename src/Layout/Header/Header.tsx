@@ -197,7 +197,7 @@ export default function Header() {
               gap: 0.5,
             }}
           >
-            {isAdmin?.user.role === "ADMIN" ? (
+            {isAdmin?.user?.role === "ADMIN" ? (
               <Button
                 onClick={() => {
                   navigate("/admin");
