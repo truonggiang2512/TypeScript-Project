@@ -23,7 +23,7 @@ function HomeAuth({}: Props) {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    const actionProfileApi: any = getProfileAsync(idUser.user.id);
+    const actionProfileApi: any = getProfileAsync(idUser?.user.id);
     dispatch(actionProfileApi);
 
     const actionJobApi: any = jobAsynAction();

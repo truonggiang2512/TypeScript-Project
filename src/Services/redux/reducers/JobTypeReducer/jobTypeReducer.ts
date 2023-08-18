@@ -21,9 +21,11 @@ export interface DsChiTietLoai {
 }
 export interface JobTypeState {
   arrType: JobTypeModel[];
+  isLoading: boolean;
 }
 const initialState: JobTypeState = {
   arrType: [],
+  isLoading: false,
 };
 
 const jobTypeReducer = createSlice({
@@ -32,11 +34,14 @@ const jobTypeReducer = createSlice({
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(jobTypeAsync.pending, (state: JobTypeState, action: any) => {})
+      .addCase(jobTypeAsync.pending, (state: JobTypeState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         jobTypeAsync.fulfilled,
         (state: JobTypeState, action: PayloadAction<JobTypeModel[]>) => {
           state.arrType = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(jobTypeAsync.rejected, (state: JobTypeState, action: any) => {});

@@ -21,9 +21,11 @@ export interface DsChiTietLoai {
 }
 export interface MenuState {
   arrMenu: MenuModel[];
+  isLoading: boolean;
 }
 const initialState: MenuState = {
   arrMenu: [],
+  isLoading: false,
 };
 
 const menuReducer = createSlice({
@@ -32,11 +34,14 @@ const menuReducer = createSlice({
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(menuAsync.pending, (state: MenuState, action: any) => {})
+      .addCase(menuAsync.pending, (state: MenuState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         menuAsync.fulfilled,
         (state: MenuState, action: PayloadAction<MenuModel[]>) => {
           state.arrMenu = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(menuAsync.rejected, (state: MenuState, action: any) => {});

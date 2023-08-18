@@ -18,10 +18,12 @@ export interface AddCommentModel {
 export interface CommentState {
   arrComment: CommentModel[];
   arrAddComment: AddCommentModel[];
+  isLoading: boolean;
 }
 const initialState: CommentState = {
   arrComment: [],
   arrAddComment: [],
+  isLoading: false,
 };
 
 const commentReducer = createSlice({
@@ -30,24 +32,25 @@ const commentReducer = createSlice({
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(commentAsync.pending, (state: CommentState, action: any) => {})
+      .addCase(commentAsync.pending, (state: CommentState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         commentAsync.fulfilled,
         (state: CommentState, action: PayloadAction<CommentModel[]>) => {
           state.arrComment = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(commentAsync.rejected, (state: CommentState, action: any) => {})
-      .addCase(
-        addCommentAsync.pending,
-        (state: CommentState, action: any) => {}
-      )
+      .addCase(addCommentAsync.pending, (state: CommentState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         addCommentAsync.fulfilled,
         (state: CommentState, action: PayloadAction<AddCommentModel[]>) => {
           state.arrAddComment = action.payload;
-          alert("Binh Luan Thanh Cong");
-          location.reload();
+          state.isLoading = false;
         }
       )
       .addCase(
@@ -80,9 +83,27 @@ export const commentAsync = createAsyncThunk(
 // ------ addCommentAsync---------
 export const addCommentAsync = createAsyncThunk(
   "addCommentAsync",
-  async (formComment: AddCommentModel) => {
+  async (formComment: AddCommentModel, { dispatch }) => {
     try {
       const res = await http.post("binh-luan", formComment);
+      if (res.status === 201) {
+        await dispatch(commentAsync(res.data.content.maCongViec));
+      }
+      return res.data.content;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+// --------------- deleteCommentAsync-------------
+export const deleteCommentAsync = createAsyncThunk(
+  "deleteCommentAsync",
+  async (maCongViec: number, { dispatch }) => {
+    try {
+      const res = await http.delete(`binh-luan/${maCongViec}`);
+      if (res.status === 201) {
+        await dispatch(commentAsync(res.data.content.maCongViec));
+      }
       return res.data.content;
     } catch (error) {
       throw error;

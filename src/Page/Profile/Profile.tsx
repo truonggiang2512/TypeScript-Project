@@ -29,7 +29,7 @@ const Profile = (props: Props) => {
   const dispatch: DispatchType = useDispatch();
   const idUser = storage.get(USER_LOGIN);
   useEffect(() => {
-    const actionProfileApi = getProfileAsync(idUser.user.id);
+    const actionProfileApi = getProfileAsync(idUser?.user.id);
     dispatch(actionProfileApi);
     const actionAPI = getHireAsync();
     dispatch(actionAPI);
@@ -149,6 +149,9 @@ const Profile = (props: Props) => {
                   <Box pt={1}>
                     <Typography sx={{ color: "#000" }} variant="body1">
                       English - Basic
+                    </Typography>
+                    <Typography sx={{ color: "#000" }} variant="body1">
+                      {userProfile.skill}
                     </Typography>
                   </Box>
                 </Box>

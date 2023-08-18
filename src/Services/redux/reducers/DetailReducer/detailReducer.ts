@@ -24,9 +24,11 @@ export interface CongViec {
 }
 export interface DetailState {
   arrDetail: DetailModel[];
+  isLoading: boolean;
 }
 const initialState: DetailState = {
   arrDetail: [],
+  isLoading: false,
 };
 
 const detailReducer = createSlice({
@@ -35,11 +37,14 @@ const detailReducer = createSlice({
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(detailAsyncAPI.pending, (state: DetailState, action: any) => {})
+      .addCase(detailAsyncAPI.pending, (state: DetailState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         detailAsyncAPI.fulfilled,
         (state: DetailState, action: PayloadAction<DetailModel[]>) => {
           state.arrDetail = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(

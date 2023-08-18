@@ -12,9 +12,11 @@ interface HireModel {
 
 interface HireState {
   arrHire: HireModel[];
+  isLoading: boolean;
 }
 const initialState: HireState = {
   arrHire: [],
+  isLoading: false,
 };
 
 const hireJobReducer = createSlice({
@@ -23,12 +25,14 @@ const hireJobReducer = createSlice({
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(hireAsync.pending, (state: HireState, action: any) => {})
+      .addCase(hireAsync.pending, (state: HireState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         hireAsync.fulfilled,
         (state: HireState, action: PayloadAction<HireModel[]>) => {
           state.arrHire = action.payload;
-          alert("Ban Da Thue Thanh Cong");
+          state.isLoading = false;
         }
       )
       .addCase(hireAsync.rejected, (state: HireState, action: any) => {});

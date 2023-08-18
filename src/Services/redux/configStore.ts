@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import adminReducer from "./reducers/AdminReducer/adminReducer";
 import commentReducer from "./reducers/CommentReducer/commentReducer";
-import congViecReducer from "./reducers/congViecReducer";
 import detailReducer from "./reducers/DetailReducer/detailReducer";
 import hireJobReducer from "./reducers/HireJobReducer/hireJobReducer";
 import homeReducer from "./reducers/HomePage/homeReducer";
@@ -13,7 +12,6 @@ import searchReducer from "./searchReducer/searchReducer";
 
 const store = configureStore({
   reducer: {
-    congviecReducer: congViecReducer,
     userReducer: userReducer,
     homeReducer: homeReducer,
     profileReducer: profileReducer,

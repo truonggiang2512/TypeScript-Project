@@ -34,10 +34,12 @@ export interface Datum {
 export interface HomeState {
   arrAllJob: HomeModel[] | undefined;
   arrPageIndex: PageIndex[];
+  isLoading: boolean;
 }
 export const initialState: HomeState = {
   arrAllJob: [],
   arrPageIndex: [],
+  isLoading: false,
 };
 
 const homeReducer = createSlice({
@@ -46,22 +48,25 @@ const homeReducer = createSlice({
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(jobAsynAction.pending, (state: HomeState, action: any) => {})
+      .addCase(jobAsynAction.pending, (state: HomeState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         jobAsynAction.fulfilled,
         (state: HomeState, action: PayloadAction<HomeModel[]>) => {
           state.arrAllJob = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(jobAsynAction.rejected, (state: HomeState, action: any) => {})
-      .addCase(
-        getJobHomePageAsync.pending,
-        (state: HomeState, action: any) => {}
-      )
+      .addCase(getJobHomePageAsync.pending, (state: HomeState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         getJobHomePageAsync.fulfilled,
         (state: HomeState, action: PayloadAction<PageIndex[]>) => {
           state.arrPageIndex = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(

@@ -79,17 +79,23 @@ export default function Register({}: Props) {
         .string()
         .required("password cannot be blank")
         .matches(
-          /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$/,
+          /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
           "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
         ),
       name: yup
         .string()
         .required("name cannot be blank")
         .matches(
-          /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
+          /[^a-z0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/u,
           "Enter valid name !"
         ),
-      phone: yup.number().required("phone cannot be blank"),
+      phone: yup
+        .string()
+        .required("phone cannot be blank")
+        .matches(
+          /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+          "phone invalid"
+        ),
     }),
     onSubmit: (values: UserSignupFrm) => {
       const actionApi = signupAsyncAction(values);

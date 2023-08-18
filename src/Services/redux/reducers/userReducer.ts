@@ -25,12 +25,14 @@ export interface RegisModel {
 export interface UserState {
   userLogin: UserModel | undefined;
   userRegister: RegisModel | undefined;
+  isLoading: boolean;
   isOpen: boolean;
 }
 
 const initialState: UserState = {
   userLogin: storage.get(USER_LOGIN),
   userRegister: storage.get(USER_SIGNUP),
+  isLoading: false,
   isOpen: false,
 };
 const userReducer = createSlice({
@@ -38,16 +40,10 @@ const userReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder: any) => {
-    /*
-        Các trạng thái của 1 action api
-        + pending: Khi api đang được thực hiện
-        + fulfilled: khi kết quả api trả về thành công
-        + rejected: Khi kết quả api trả về thất bại
-     */
-    // Xử lý dữ liệu trả về api
     builder
       .addCase(loginAsyncAction.pending, (state: UserState, action: any) => {
         state.isOpen = true;
+        state.isLoading = true;
       })
 
       .addCase(
@@ -55,16 +51,21 @@ const userReducer = createSlice({
         (state: UserState, action: PayloadAction<UserModel>) => {
           state.userLogin = action.payload;
           state.isOpen = true;
+          state.isLoading = false;
         }
       )
       .addCase(loginAsyncAction.rejected, (state: UserState, action: any) => {
         state.isOpen = false;
+        state.isLoading = false;
         alert("Sai ten dang nhap hoac mat khau");
       })
-      .addCase(signupAsyncAction.pending, (state: UserState, action: any) => {})
+      .addCase(signupAsyncAction.pending, (state: UserState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         signupAsyncAction.fulfilled,
         (state: UserState, action: PayloadAction<RegisModel>) => {
+          state.isLoading = false;
           state.userRegister = action.payload;
         }
       )
@@ -98,7 +99,6 @@ export const signupAsyncAction = createAsyncThunk(
   async (userRegister: UserSignupFrm, { dispatch, rejectWithValue }) => {
     try {
       const res = await http.post("auth/signup", userRegister);
-      alert("Dang ki thanh cong");
       if (res.status === 200) {
         await dispatch(
           loginAsyncAction({
@@ -113,7 +113,7 @@ export const signupAsyncAction = createAsyncThunk(
       return res.data.content;
     } catch (error: any) {
       console.error("Error during signup:", error);
-      return rejectWithValue(error.response.data); // Trả về lỗi từ backend
+      return rejectWithValue(error.response.data);
     }
   }
 );

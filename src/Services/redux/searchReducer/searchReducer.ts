@@ -43,11 +43,13 @@ export interface CongViecState {
   arrSearch: LoaiCongViecModal[];
   arrChiTiet: DsChiTietLoai[];
   arrChiTietLoai: LoaiCongViecModal[];
+  isLoading: boolean;
 }
 const initialState: CongViecState = {
   arrSearch: [],
   arrChiTiet: [],
   arrChiTietLoai: [],
+  isLoading: false,
 };
 
 const searchReducer = createSlice({
@@ -57,26 +59,33 @@ const searchReducer = createSlice({
   extraReducers: (builder: any) => {
     builder.addCase(
       searchJobAsync.pending,
-      (state: CongViecState, action: any) => {}
+      (state: CongViecState, action: any) => {
+        state.isLoading = true;
+      }
     );
     builder.addCase(
       searchJobAsync.fulfilled,
       (state: CongViecState, action: PayloadAction<LoaiCongViecModal[]>) => {
         state.arrSearch = action.payload;
+        state.isLoading = false;
       }
     );
     builder.addCase(
       searchJobAsync.rejected,
       (state: CongViecState, action: any) => {}
     );
+    //-----------------Search Job ID--------------
     builder.addCase(
       searchIDAsync.pending,
-      (state: CongViecState, action: any) => {}
+      (state: CongViecState, action: any) => {
+        state.isLoading = true;
+      }
     );
     builder.addCase(
       searchIDAsync.fulfilled,
       (state: CongViecState, action: PayloadAction<LoaiCongViecModal[]>) => {
         state.arrSearch = action.payload;
+        state.isLoading = false;
       }
     );
     builder.addCase(
@@ -86,12 +95,15 @@ const searchReducer = createSlice({
     //------------search Theo ID -------------
     builder.addCase(
       searchIdTypeAsync.pending,
-      (state: CongViecState, action: any) => {}
+      (state: CongViecState, action: any) => {
+        state.isLoading = true;
+      }
     );
     builder.addCase(
       searchIdTypeAsync.fulfilled,
       (state: CongViecState, action: PayloadAction<LoaiCongViecModal[]>) => {
         state.arrChiTietLoai = action.payload;
+        state.isLoading = false;
       }
     );
     builder.addCase(
@@ -101,12 +113,15 @@ const searchReducer = createSlice({
     //------------dsChiTietLoai---------------
     builder.addCase(
       getIdTypeAsync.pending,
-      (state: CongViecState, action: any) => {}
+      (state: CongViecState, action: any) => {
+        state.isLoading = true;
+      }
     );
     builder.addCase(
       getIdTypeAsync.fulfilled,
       (state: CongViecState, action: PayloadAction<DsChiTietLoai[]>) => {
         state.arrChiTiet = action.payload;
+        state.isLoading = false;
       }
     );
     builder.addCase(

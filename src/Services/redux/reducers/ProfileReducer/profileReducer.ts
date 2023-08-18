@@ -39,11 +39,13 @@ export interface CongViec {
 export interface ProfileState {
   arrProfile: ProfileModel[];
   arrHire: GetHireModel[];
+  isLoading: boolean;
 }
 
 const initialState: ProfileState = {
   arrProfile: [],
   arrHire: [],
+  isLoading: false,
 };
 
 const profileReducer = createSlice({
@@ -52,36 +54,42 @@ const profileReducer = createSlice({
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(
-        getProfileAsync.pending,
-        (state: ProfileState, action: any) => {}
-      )
+      .addCase(getProfileAsync.pending, (state: ProfileState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         getProfileAsync.fulfilled,
         (state: ProfileState, action: PayloadAction<ProfileModel[]>) => {
           state.arrProfile = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(
         getProfileAsync.rejected,
         (state: ProfileState, action: any) => {}
       )
-      .addCase(getHireAsync.pending, (state: ProfileState, action: any) => {})
+      //---------------------getHireAsync-----------------
+      .addCase(getHireAsync.pending, (state: ProfileState, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(
         getHireAsync.fulfilled,
         (state: ProfileState, action: PayloadAction<GetHireModel[]>) => {
           state.arrHire = action.payload;
+          state.isLoading = false;
         }
       )
       .addCase(getHireAsync.rejected, (state: ProfileState, action: any) => {})
       .addCase(
         deleteJobAsyncAPI.pending,
-        (state: ProfileState, action: any) => {}
+        (state: ProfileState, action: any) => {
+          state.isLoading = true;
+        }
       )
       .addCase(
         deleteJobAsyncAPI.fulfilled,
         (state: ProfileState, action: PayloadAction<GetHireModel[]>) => {
-          alert("Xoa Thanh Cong");
+          state.isLoading = false;
         }
       )
       .addCase(
