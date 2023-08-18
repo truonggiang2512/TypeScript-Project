@@ -20,12 +20,10 @@ import { DispatchType, RootState } from "../../Services/redux/configStore";
 import {
   getJobAsync,
   getJobHireAsync,
-  getJobTypeAsync,
   getUserAsync,
 } from "../../Services/redux/reducers/AdminReducer/adminReducer";
 import TableUser from "./Table/Table";
 import TableJob from "./Table/TableJob";
-import TableJobType from "./Table/TableJobType";
 import TableHire from "./Table/TableHire";
 import storage from "../../Utils/storage";
 type Props = {};
@@ -74,9 +72,7 @@ function Admin({}: Props) {
   const showJob = () => {
     setTable(<TableJob />);
   };
-  const showJobType = () => {
-    setTable(<TableJobType />);
-  };
+
   const showHire = () => {
     setTable(<TableHire />);
   };
@@ -141,15 +137,6 @@ function Admin({}: Props) {
                   }}
                 >
                   <ListItemText primary="Quản lý công việc" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton
-                  onClick={() => {
-                    showJobType();
-                  }}
-                >
-                  <ListItemText primary="Quản lý loại công việc" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>

@@ -29,6 +29,7 @@ function Comment({}: Props) {
   useEffect(() => {
     setComment(arrComment);
   }, [arrComment]);
+  console.log(comment, "comment");
   return (
     <Box>
       {comment?.map((item) => {
