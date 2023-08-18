@@ -12,6 +12,10 @@ import { USER_LOGIN } from "../../Utils/constant";
 import { DispatchType } from "../../Services/redux/configStore";
 import { useDispatch } from "react-redux";
 import { hireAsync } from "../../Services/redux/reducers/HireJobReducer/hireJobReducer";
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
 type Props = {
   arrDetail: DetailModel[];
 };
@@ -46,6 +50,13 @@ function a11yProps(index: number) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 function Gig({ arrDetail }: Props) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -54,7 +65,22 @@ function Gig({ arrDetail }: Props) {
   let date = new Date().toLocaleDateString();
   const dispatch: DispatchType = useDispatch();
   const user = storage.get(USER_LOGIN);
+  const [open, setOpen] = React.useState(false);
 
+  const handleAlertOpen = () => {
+    setOpen(true);
+  };
+
+  const handleAlertClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
     <Box
       sx={{
@@ -162,6 +188,7 @@ function Gig({ arrDetail }: Props) {
                               ngayThue: date,
                               hoanThanh: true,
                             });
+                            handleAlertOpen();
                             dispatch(actionAPI);
                           }}
                         >
@@ -226,6 +253,7 @@ function Gig({ arrDetail }: Props) {
                               ngayThue: date,
                               hoanThanh: true,
                             });
+                            handleAlertOpen();
                             dispatch(actionAPI);
                           }}
                         >
@@ -290,6 +318,7 @@ function Gig({ arrDetail }: Props) {
                               ngayThue: date,
                               hoanThanh: true,
                             });
+                            handleAlertOpen();
                             dispatch(actionAPI);
                           }}
                         >
@@ -307,6 +336,21 @@ function Gig({ arrDetail }: Props) {
           </Box>
         </Box>
       </Box>
+      <Stack spacing={2} sx={{ width: "100%" }}>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleAlertClose}
+        >
+          <Alert
+            onClose={handleAlertClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Hire successful!!!
+          </Alert>
+        </Snackbar>
+      </Stack>
     </Box>
   );
 }

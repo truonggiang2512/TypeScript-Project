@@ -12,9 +12,7 @@ function Categories({ arrAllJob }: Props) {
       <Box className="categories-content">
         <Box>
           <Box py={3}>
-            <Button size="large" variant="text" endIcon={<NavigateNextIcon />}>
-              <Typography variant="h3"> Job Categories</Typography>
-            </Button>
+            <Typography variant="h3"> Job Categories</Typography>
           </Box>
           <Grid container spacing={2} columns={{ xs: 4, sm: 12, md: 16 }}>
             {arrAllJob.map((item, key) => {

@@ -12,7 +12,7 @@ import Loading from "./Component/Loading/Loading";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <Provider store={store}>
-      <Loading></Loading>
+      {/* <Loading></Loading> */}
       <CssVarsProvider theme={theme}>
         <CssBaseline />
         <RouterProvider router={router} />

@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Alert } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -7,10 +7,28 @@ import {
   deleteJobAsyncAPI,
   GetHireModel,
 } from "../../Services/redux/reducers/ProfileReducer/profileReducer";
-
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
 type Props = { HireDetail: GetHireModel };
 
 function HireItem({ HireDetail }: Props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleAlertOpen = () => {
+    setOpen(true);
+  };
+
+  const handleAlertClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   const [arr, setArr] = useState(HireDetail);
   useEffect(() => {
     setArr(HireDetail);
@@ -54,6 +72,7 @@ function HireItem({ HireDetail }: Props) {
                   <Button
                     onClick={() => {
                       deleteAction(arr.id);
+                      handleAlertOpen();
                     }}
                     size="small"
                     variant="contained"
@@ -66,6 +85,21 @@ function HireItem({ HireDetail }: Props) {
           </Box>
         </Box>
       </Box>
+      <Stack spacing={2} sx={{ width: "100%" }}>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleAlertClose}
+        >
+          <Alert
+            onClose={handleAlertClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Delete successful!!!
+          </Alert>
+        </Snackbar>
+      </Stack>
     </div>
   );
 }
