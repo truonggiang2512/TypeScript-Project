@@ -86,20 +86,20 @@ const adminReducer = createSlice({
       )
       .addCase(getJobAsync.rejected, (state: ContentState, action: any) => {})
       //----------------------Get Type of Job-----------------------
-      .addCase(getJobTypeAsync.pending, (state: ContentState, action: any) => {
-        // state.isLoading = true;
-      })
-      .addCase(
-        getJobTypeAsync.fulfilled,
-        (state: ContentState, action: PayloadAction<JobType[]>) => {
-          state.arrJobType = action.payload;
-          // state.isLoading = false;
-        }
-      )
-      .addCase(
-        getJobTypeAsync.rejected,
-        (state: ContentState, action: any) => {}
-      )
+      // .addCase(getJobTypeAsync.pending, (state: ContentState, action: any) => {
+      //   // state.isLoading = true;
+      // })
+      // .addCase(
+      //   getJobTypeAsync.fulfilled,
+      //   (state: ContentState, action: PayloadAction<JobType[]>) => {
+      //     state.arrJobType = action.payload;
+      //     // state.isLoading = false;
+      //   }
+      // )
+      // .addCase(
+      //   getJobTypeAsync.rejected,
+      //   (state: ContentState, action: any) => {}
+      // )
       //-----------------------Hire Job-----------------------
       .addCase(getJobHireAsync.pending, (state: ContentState, action: any) => {
         state.isLoading = true;
@@ -144,14 +144,14 @@ export const getJobAsync = createAsyncThunk("getJobAsync", async () => {
 });
 
 //--------------getJobTypeAsync-----------
-export const getJobTypeAsync = createAsyncThunk("getJobTypeAsync", async () => {
-  try {
-    const res = await http.get("loai-cong-viec");
-    return res.data.content;
-  } catch (error) {
-    throw error;
-  }
-});
+// export const getJobTypeAsync = createAsyncThunk("getJobTypeAsync", async () => {
+//   try {
+//     const res = await http.get("loai-cong-viec");
+//     return res.data.content;
+//   } catch (error) {
+//     throw error;
+//   }
+// });
 //--------------getJobHireAsync-----------
 export const getJobHireAsync = createAsyncThunk("getJobHireAsync", async () => {
   try {
@@ -196,20 +196,20 @@ export const deleteJobAsync = createAsyncThunk(
 );
 
 //--------------deleteJobTypeAsync-----------
-export const deleteJobTypeAsync = createAsyncThunk(
-  "deleteJobTypeAsync",
-  async (id: number, { dispatch }) => {
-    if (window.confirm("Do you want to remove?")) {
-      const res = await http.delete(`loai-cong-viec/${id}`);
+// export const deleteJobTypeAsync = createAsyncThunk(
+//   "deleteJobTypeAsync",
+//   async (id: number, { dispatch }) => {
+//     if (window.confirm("Do you want to remove?")) {
+//       const res = await http.delete(`loai-cong-viec/${id}`);
 
-      if (res.status === 200) {
-        await dispatch(getJobTypeAsync());
-      } else {
-        return;
-      }
-    }
-  }
-);
+//       if (res.status === 200) {
+//         await dispatch(getJobTypeAsync());
+//       } else {
+//         return;
+//       }
+//     }
+//   }
+// );
 //--------------deleteJobHireAsync-----------
 export const deleteJobHireAsync = createAsyncThunk(
   "deleteJobHireAsync",
