@@ -22,6 +22,7 @@ function HomeAuth({}: Props) {
   const arrAllJob: any = useSelector(
     (state: any) => state.homeReducer.arrAllJob
   );
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -75,32 +76,9 @@ function HomeAuth({}: Props) {
               </Box>
             </Box>
           </Box>
-          <Box
-            my={3}
-            sx={{ border: 1, borderRadius: "7px", borderColor: "primary.main" }}
-          >
-            <Box
-              px={3}
-              py={3}
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Box>
-                <Typography variant="subtitle2">
-                  Here's what you need for branding your business
-                </Typography>
-              </Box>
-              <Box>
-                <Button size="large" variant="text">
-                  View checklist
-                </Button>
-              </Box>
-            </Box>
-          </Box>
+
           <Box my={5}>
             <Categories arrAllJob={arrAllJob} />
-          </Box>
-          <Box my={5}>
-            <Joblist />
           </Box>
 
           <Box mt={5}>

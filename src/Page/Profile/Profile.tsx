@@ -1,11 +1,11 @@
-import { Avatar, Box, Typography, Container, Button } from "@mui/material";
+import { Avatar, Box, Typography, Container, Button, Fab } from "@mui/material";
 import ModeIcon from "@mui/icons-material/Mode";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PersonIcon from "@mui/icons-material/Person";
 import GoogleIcon from "@mui/icons-material/Google";
 import FactoryTwoToneIcon from "@mui/icons-material/FactoryTwoTone";
 import NavigateNextTwoToneIcon from "@mui/icons-material/NavigateNextTwoTone";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Add } from "@mui/icons-material";
 import HireItem from "./HireItem";
 import storage from "../../Utils/storage";
@@ -14,9 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getHireAsync,
   getProfileAsync,
+  uploadAvatarJobAsync,
 } from "../../Services/redux/reducers/ProfileReducer/profileReducer";
 import { DispatchType, RootState } from "../../Services/redux/configStore";
-
+import AddPhotoIcon from "@mui/icons-material/AddAPhoto";
+import { useNavigate } from "react-router-dom";
 type Props = {};
 
 const Profile = (props: Props) => {
@@ -26,8 +28,15 @@ const Profile = (props: Props) => {
   const userProfile: any = useSelector(
     (state: RootState) => state.profileReducer.arrProfile
   );
+  const navigate = useNavigate();
   const dispatch: DispatchType = useDispatch();
   const idUser = storage.get(USER_LOGIN);
+  const imageHandler = (event: any) => {
+    const file = event.target.files[0];
+    const actionAPI = uploadAvatarJobAsync(file);
+    dispatch(actionAPI);
+  };
+
   useEffect(() => {
     const actionProfileApi = getProfileAsync(idUser?.user.id);
     dispatch(actionProfileApi);
@@ -56,13 +65,45 @@ const Profile = (props: Props) => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  position: "relative",
+                  "&:hover .fab": {
+                    display: "block",
+                  },
                 }}
               >
                 <Avatar
                   alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
+                  src={userProfile.avatar}
                   sx={{ width: 150, height: 150 }}
                 />
+                <Fab
+                  aria-label="add-image"
+                  className="fab"
+                  sx={{
+                    position: "absolute",
+                    overflow: "hidden",
+                    display: "none",
+                    opacity: 0.7,
+                  }}
+                >
+                  <input
+                    name="file"
+                    type="file"
+                    onChange={imageHandler}
+                    accept=".jpg, .jpeg, .png"
+                    multiple
+                    style={{
+                      position: "absolute",
+                      top: "-40px",
+                      left: 0,
+                      height: "calc(100% + 36px)",
+                      width: "calc(100% + 5px)",
+                      outline: "none",
+                    }}
+                  />
+
+                  <AddPhotoIcon />
+                </Fab>
               </Box>
               <Box py={2} sx={{ textAlign: "center" }}>
                 <Typography sx={{ color: "#000" }} variant="subtitle2">
@@ -71,9 +112,6 @@ const Profile = (props: Props) => {
                 <Typography sx={{ color: "#000" }} variant="body1">
                   @{userProfile.name}
                 </Typography>
-                <Button size="small">
-                  <ModeIcon sx={{ color: "#000" }} fontSize="small" />
-                </Button>
               </Box>
               <Box sx={{ borderTop: "0.5px solid " }}>
                 <Box py={2}>
@@ -124,11 +162,6 @@ const Profile = (props: Props) => {
                     Description
                   </Typography>
                 </Box>
-                <Box>
-                  <Button sx={{ p: 0, color: "#000" }} variant="text">
-                    Edit Description
-                  </Button>
-                </Box>
               </Box>
               <Box sx={{ borderTop: "0.5px solid ", borderColor: "#000" }}>
                 <Box py={4}>
@@ -139,11 +172,6 @@ const Profile = (props: Props) => {
                       <Typography sx={{ color: "#000" }} variant="subtitle2">
                         Languages
                       </Typography>
-                    </Box>
-                    <Box>
-                      <Button sx={{ p: 0, color: "#000" }} variant="text">
-                        Add New
-                      </Button>
                     </Box>
                   </Box>
                   <Box pt={1}>
@@ -197,13 +225,9 @@ const Profile = (props: Props) => {
                         Help us tallor your experience to fif your needs
                       </Typography>
                     </Box>
-                    <Button
-                      endIcon={<NavigateNextTwoToneIcon />}
-                      variant="text"
-                      sx={{ p: 0, color: "#000" }}
-                    >
+                    <Typography variant="body2" sx={{ p: 0, color: "#000" }}>
                       Tell us about your business
-                    </Button>
+                    </Typography>
                   </Box>
                 </Box>
               </Box>
@@ -223,8 +247,14 @@ const Profile = (props: Props) => {
                   <Typography sx={{ color: "#000" }} variant="body1">
                     It seems that you dont have any active Gigs. Get Selling
                   </Typography>
-                  <Button size="small" variant="contained">
-                    Create a new Gig
+                  <Button
+                    onClick={() => {
+                      navigate("/brief");
+                    }}
+                    size="small"
+                    variant="contained"
+                  >
+                    Create a new Brief
                   </Button>
                 </Box>
               </Box>

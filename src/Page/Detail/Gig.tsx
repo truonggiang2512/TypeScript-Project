@@ -81,6 +81,15 @@ function Gig({ arrDetail }: Props) {
 
     setOpen(false);
   };
+  const [active, setActive] = useState(false);
+  const handleClickColor = () => {
+    setActive(!active);
+  };
+  const [activeSave, setActiveSave] = useState(false);
+  const handleClickSave = () => {
+    setActiveSave(!activeSave);
+  };
+
   return (
     <Box
       sx={{
@@ -91,8 +100,18 @@ function Gig({ arrDetail }: Props) {
     >
       <Box>
         <Box sx={{ display: "flex", gap: 1, justifyContent: "right" }}>
-          <FavoriteBorderIcon />
-          <TurnedInNotIcon />
+          <FavoriteBorderIcon
+            sx={{ color: active ? "" : "red" }}
+            onClick={() => {
+              handleClickColor();
+            }}
+          />
+          <TurnedInNotIcon
+            sx={{ color: activeSave ? "" : "#efc948" }}
+            onClick={() => {
+              handleClickSave();
+            }}
+          />
           <ShareIcon />
         </Box>
         <Box

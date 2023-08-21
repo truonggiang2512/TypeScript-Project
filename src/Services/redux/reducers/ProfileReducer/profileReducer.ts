@@ -107,14 +107,13 @@ export default profileReducer.reducer;
 export const getProfileAsync = createAsyncThunk(
   "getProfileAsync",
   async (id: number) => {
-    //call api
     try {
-      // Call API
       const res = await http.get(`users/${id}`);
-      return res.data.content || []; // Trả về mảng, hoặc mảng rỗng nếu không có dữ liệu
+      console.log(res.data.content);
+      return res.data.content || [];
     } catch (error) {
       console.error("Error during fetching jobs:", error);
-      throw error; // Ném lỗi để createAsyncThunk xử lý
+      throw error;
     }
   }
 );
@@ -125,10 +124,10 @@ export const getHireAsync = createAsyncThunk("getHireAsync", async () => {
   try {
     // Call API
     const res = await http.get("thue-cong-viec/lay-danh-sach-da-thue");
-    return res.data.content || []; // Trả về mảng, hoặc mảng rỗng nếu không có dữ liệu
+    return res.data.content || [];
   } catch (error) {
     console.error("Error during fetching jobs:", error);
-    throw error; // Ném lỗi để createAsyncThunk xử lý
+    throw error;
   }
 });
 
@@ -144,6 +143,28 @@ export const deleteJobAsyncAPI = createAsyncThunk(
       } else {
         return;
       }
+    }
+  }
+);
+//---------- uploadAvatarJobAsync-----------
+export const uploadAvatarJobAsync = createAsyncThunk(
+  "uploadAvatarJobAsync",
+  async (file: File, { dispatch }) => {
+    try {
+      let formData = new FormData();
+      formData.append("formFile", file);
+      const res = await http.post("users/upload-avatar", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (res.data.statusCode === 200) {
+        await dispatch(getProfileAsync(res.data.content.id));
+      }
+      return res.data.content;
+    } catch (error) {
+      console.error("Error during fetching jobs:", error);
+      throw error;
     }
   }
 );
