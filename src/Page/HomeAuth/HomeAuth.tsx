@@ -11,6 +11,7 @@ import Categories from "./Categories/Categories";
 import HomeServices from "../Home/HomeServices/HomeServices";
 import Joblist from "../Home/JobList/JobList";
 import { Banner } from "../Home/Banner/Banner";
+import { useNavigate } from "react-router-dom";
 type Props = {};
 
 function HomeAuth({}: Props) {
@@ -21,6 +22,7 @@ function HomeAuth({}: Props) {
   const arrAllJob: any = useSelector(
     (state: any) => state.homeReducer.arrAllJob
   );
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     const actionProfileApi: any = getProfileAsync(idUser?.user.id);
@@ -61,7 +63,13 @@ function HomeAuth({}: Props) {
                 </Box>
               </Box>
               <Box>
-                <Button size="large" variant="contained">
+                <Button
+                  onClick={() => {
+                    navigate("/brief");
+                  }}
+                  size="large"
+                  variant="contained"
+                >
                   Create a brief
                 </Button>
               </Box>

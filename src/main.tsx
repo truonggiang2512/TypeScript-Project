@@ -7,12 +7,10 @@ import { Provider } from "react-redux";
 import store from "./Services/redux/configStore";
 import router from "./Router/Router";
 import { RouterProvider } from "react-router-dom";
-import Loading from "./Component/Loading/Loading";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <Provider store={store}>
-      {/* <Loading></Loading> */}
       <CssVarsProvider theme={theme}>
         <CssBaseline />
         <RouterProvider router={router} />
