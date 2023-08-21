@@ -54,6 +54,7 @@ function Profile() {
           sx: {
             overflow: "visible",
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            width: 150,
             mt: 1.5,
             "& .MuiAvatar-root": {
               width: 32,
@@ -91,18 +92,6 @@ function Profile() {
         </MenuItem>
 
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
         <MenuItem onClick={handleClose}>
           <Typography
             variant="subtitle1"
