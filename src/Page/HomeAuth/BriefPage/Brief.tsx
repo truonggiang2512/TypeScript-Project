@@ -112,6 +112,12 @@ function Brief({}: Props) {
               >
                 How does this matching thing work?
               </Typography>
+              <Box>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/writing-translation.a787f2f.svg"
+                  alt=""
+                />
+              </Box>
               <Modal
                 open={openMatching}
                 aria-labelledby="child-modal-title"

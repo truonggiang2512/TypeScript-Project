@@ -101,13 +101,13 @@ function Gig({ arrDetail }: Props) {
       <Box>
         <Box sx={{ display: "flex", gap: 1, justifyContent: "right" }}>
           <FavoriteBorderIcon
-            sx={{ color: active ? "" : "red" }}
+            sx={{ color: active ? "red" : "" }}
             onClick={() => {
               handleClickColor();
             }}
           />
           <TurnedInNotIcon
-            sx={{ color: activeSave ? "" : "#efc948" }}
+            sx={{ color: activeSave ? "#efc948" : "" }}
             onClick={() => {
               handleClickSave();
             }}
