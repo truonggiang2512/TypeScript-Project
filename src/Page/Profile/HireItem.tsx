@@ -42,15 +42,23 @@ function HireItem({ HireDetail }: Props) {
     <div>
       <Box sx={{ bgcolor: "white", width: { md: "50vw", xs: "100%" } }}>
         <Box>
-          <Box sx={{ display: { md: "flex", xs: "block" }, gap: 2 }}>
-            <Box sx={{ width: { md: "40%", xs: "100%" } }}>
+          <Box
+            sx={{
+              display: { md: "flex", xs: "block" },
+              gap: 2,
+              justifyContent: "space-between",
+            }}
+          >
+            <Box>
               <img
                 style={{ height: "100%", width: "100%" }}
                 src={arr.congViec.hinhAnh}
                 alt=""
               />
             </Box>
-            <Box sx={{ width: { md: "60%", xs: "100%" } }}>
+            <Box
+              sx={{ width: { md: "60%", xs: "100%" }, px: { md: 0, xs: 2 } }}
+            >
               <Box pt={2}>
                 <Typography sx={{ color: "#000" }} variant="subtitle2">
                   {arr.congViec.tenCongViec}

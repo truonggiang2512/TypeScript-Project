@@ -59,8 +59,12 @@ function InputCmt({ arrDetail }: Props) {
                     ngayBinhLuan: date,
                     saoBinhLuan: 5,
                   };
-                  const actionAPI = addCommentAsync(newComment);
-                  dispatch(actionAPI);
+                  if (commentData.noiDung === "") {
+                    return;
+                  } else {
+                    const actionAPI = addCommentAsync(newComment);
+                    dispatch(actionAPI);
+                  }
                 }}
               >
                 Add comment

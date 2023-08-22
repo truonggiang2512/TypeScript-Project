@@ -22,7 +22,7 @@ function ItemJobType({ dsNhom }: Props) {
     navigate("/searchtype");
   };
   return (
-    <Box>
+    <Box sx={{ px: 2 }}>
       <Box sx={{}}>
         <img width="100%" src={dsNhom.hinhAnh} alt="" />
       </Box>
