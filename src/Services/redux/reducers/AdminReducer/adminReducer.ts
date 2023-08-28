@@ -129,15 +129,6 @@ export const getJobAsync = createAsyncThunk("getJobAsync", async () => {
   }
 });
 
-//--------------getJobTypeAsync-----------
-// export const getJobTypeAsync = createAsyncThunk("getJobTypeAsync", async () => {
-//   try {
-//     const res = await http.get("loai-cong-viec");
-//     return res.data.content;
-//   } catch (error) {
-//     throw error;
-//   }
-// });
 //--------------getJobHireAsync-----------
 export const getJobHireAsync = createAsyncThunk("getJobHireAsync", async () => {
   try {
@@ -148,6 +139,20 @@ export const getJobHireAsync = createAsyncThunk("getJobHireAsync", async () => {
     throw error;
   }
 });
+//-----------------PUT--------------------
+
+export const postJobAsync = createAsyncThunk(
+  "postJobAsync",
+  async (form: Job, { dispatch }) => {
+    const res = await http.post(`cong-viec`, form);
+    if (res.status === 201) {
+      await dispatch(getUserAsync());
+      console.log("isSuccess");
+    } else {
+      return;
+    }
+  }
+);
 
 //-----------------DELETE-----------------
 //--------------deleteUserAsync-----------
@@ -157,7 +162,7 @@ export const deleteUserAsync = createAsyncThunk(
     if (window.confirm("Do you want to remove?")) {
       const res = await http.delete(`users?id=${id}`);
       if (res.status === 200) {
-        await dispatch(getUserAsync());
+        await dispatch(getJobAsync());
         console.log("isSuccess");
       } else {
         return;
@@ -181,21 +186,6 @@ export const deleteJobAsync = createAsyncThunk(
   }
 );
 
-//--------------deleteJobTypeAsync-----------
-// export const deleteJobTypeAsync = createAsyncThunk(
-//   "deleteJobTypeAsync",
-//   async (id: number, { dispatch }) => {
-//     if (window.confirm("Do you want to remove?")) {
-//       const res = await http.delete(`loai-cong-viec/${id}`);
-
-//       if (res.status === 200) {
-//         await dispatch(getJobTypeAsync());
-//       } else {
-//         return;
-//       }
-//     }
-//   }
-// );
 //--------------deleteJobHireAsync-----------
 export const deleteJobHireAsync = createAsyncThunk(
   "deleteJobHireAsync",

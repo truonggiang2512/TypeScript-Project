@@ -15,17 +15,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { DispatchType, RootState } from "../../Services/redux/configStore";
-import {
-  getJobAsync,
-  getJobHireAsync,
-  getUserAsync,
-} from "../../Services/redux/reducers/AdminReducer/adminReducer";
+import { useDispatch } from "react-redux";
+import { DispatchType } from "../../Services/redux/configStore";
 import TableUser from "./Table/Table";
 import TableJob from "./Table/TableJob";
 import TableHire from "./Table/TableHire";
-import storage from "../../Utils/storage";
 type Props = {};
 const drawerWidth = 240;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -55,7 +49,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 function Admin({}: Props) {
-  const dispatch: DispatchType = useDispatch();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [table, setTable] = useState(<TableUser />);
@@ -182,9 +175,7 @@ function Admin({}: Props) {
               />
             </Box>
           </Box>
-          <Box>
-            <Button variant="text">Them Quan Tri Vien</Button>
-          </Box>
+
           <Box py={4}>{table}</Box>
         </Box>
       </Main>

@@ -1,5 +1,5 @@
 import { Box, Container, IconButton, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";

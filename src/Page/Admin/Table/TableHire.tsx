@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import {
-  DataGrid,
-  GridColDef,
-  GridValueGetterParams,
-  GridToolbar,
-} from "@mui/x-data-grid";
-import {
-  Button,
-  FormControl,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { Button } from "@mui/material";
+
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../../Services/redux/configStore";
 import {
   deleteJobHireAsync,
-  getJobAsync,
   getJobHireAsync,
 } from "../../../Services/redux/reducers/AdminReducer/adminReducer";
+
 type Props = {};
 
 function TableHire({}: Props) {
   const arrHire = useSelector((state: RootState) => state.adminReducer.arrHire);
   const [rows, setRows] = useState(arrHire);
   const dispatch: DispatchType = useDispatch();
+
   useEffect(() => {
     const actionHireAPI = getJobHireAsync();
     dispatch(actionHireAPI);

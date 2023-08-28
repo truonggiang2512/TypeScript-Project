@@ -1,10 +1,8 @@
 import { Avatar, Box, Typography, Container, Button, Fab } from "@mui/material";
-import ModeIcon from "@mui/icons-material/Mode";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PersonIcon from "@mui/icons-material/Person";
 import GoogleIcon from "@mui/icons-material/Google";
 import FactoryTwoToneIcon from "@mui/icons-material/FactoryTwoTone";
-import NavigateNextTwoToneIcon from "@mui/icons-material/NavigateNextTwoTone";
 import React, { useEffect, useState } from "react";
 import { Add } from "@mui/icons-material";
 import HireItem from "./HireItem";

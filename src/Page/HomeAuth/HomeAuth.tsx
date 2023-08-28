@@ -8,8 +8,6 @@ import { USER_LOGIN } from "../../Utils/constant";
 import storage from "../../Utils/storage";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import Categories from "./Categories/Categories";
-import HomeServices from "../Home/HomeServices/HomeServices";
-import Joblist from "../Home/JobList/JobList";
 import { Banner } from "../Home/Banner/Banner";
 import { useNavigate } from "react-router-dom";
 type Props = {};

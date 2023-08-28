@@ -3,13 +3,7 @@ import { Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import ModeSelect from "../../Component/ModeSelect";
 import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
-import {
-  Button,
-  InputAdornment,
-  SvgIcon,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, InputAdornment, TextField, Typography } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -25,7 +19,6 @@ import { searchJobAsync } from "../../Services/redux/searchReducer/searchReducer
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType } from "../../Services/redux/configStore";
 import Profile from "./Menu/Profile";
-import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { USER_LOGIN } from "../../Utils/constant";

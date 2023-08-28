@@ -7,11 +7,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Collapse,
   Divider,
-  List,
-  ListItem,
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography,
@@ -21,8 +17,6 @@ import {
   ContentCopy,
   ContentCut,
   ContentPaste,
-  ExpandLess,
-  ExpandMore,
 } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 

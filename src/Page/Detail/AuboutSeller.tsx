@@ -1,7 +1,6 @@
-import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import { DetailModel } from "../../Services/redux/reducers/DetailReducer/detailReducer";
-import AvatarSeller from "./AvatarSeller";
 import StarIcon from "@mui/icons-material/Star";
 
 type Props = { arrDetail: DetailModel[] };

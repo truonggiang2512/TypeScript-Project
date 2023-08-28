@@ -1,5 +1,5 @@
 import Box from "@mui/system/Box";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import {
   RootState,
 } from "../../../../Services/redux/configStore";
 import { menuAsync } from "../../../../Services/redux/reducers/MenuJobReducer/menuReducer";
-import { jobTypeAsync } from "../../../../Services/redux/reducers/JobTypeReducer/jobTypeReducer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

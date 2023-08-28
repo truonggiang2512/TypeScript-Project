@@ -2,14 +2,13 @@ import { Box, Typography, Button, Alert } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { DispatchType, RootState } from "../../Services/redux/configStore";
+import { DispatchType } from "../../Services/redux/configStore";
 import {
   deleteJobAsyncAPI,
   GetHireModel,
 } from "../../Services/redux/reducers/ProfileReducer/profileReducer";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
 type Props = { HireDetail: GetHireModel };
 
 function HireItem({ HireDetail }: Props) {

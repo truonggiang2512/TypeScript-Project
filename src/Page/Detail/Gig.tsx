@@ -1,5 +1,5 @@
 import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import ShareIcon from "@mui/icons-material/Share";

@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";

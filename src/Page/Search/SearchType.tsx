@@ -7,9 +7,7 @@ import StarIcon from "@mui/icons-material/Star";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
-import { LoaiCongViecModal } from "../../Services/redux/searchReducer/searchReducer";
 import { NavLink, useNavigate } from "react-router-dom";
-import { RootState } from "../../Services/redux/configStore";
 type Props = {};
 
 function SearchType({}: Props) {
